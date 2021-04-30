@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "074673A7F4ADF43B6A0B37050190385A8F4EA3A3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "074673A7F4ADF43B6A0B37050190385A8F4EA3A3" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "64888A5F-6641-4B1F-BD6D-3DDCE8820E33",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "074673A7F4ADF43B6A0B37050190385A8F4EA3A3" : "FRE7831PairTrading\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "FRE 7831 Pair Trading",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FRE 7831 Pair Trading\/FRE 7831 Pair Trading.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git@github.com:shizukazc\/FRE7831PairTrading.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "074673A7F4ADF43B6A0B37050190385A8F4EA3A3"
+    }
+  ]
+}

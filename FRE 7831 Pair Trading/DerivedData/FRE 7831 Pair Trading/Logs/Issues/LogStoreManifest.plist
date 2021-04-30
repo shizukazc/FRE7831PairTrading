@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>CA7E24B4-766E-4BC8-83E3-17A04601A44C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>CA7E24B4-766E-4BC8-83E3-17A04601A44C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>signature</key>
+			<string>FRE_7831_Pair_Trading-funnhjruidtogseymquupczlifxd</string>
+			<key>timeStartedRecording</key>
+			<real>641454948.76848197</real>
+			<key>timeStoppedRecording</key>
+			<real>641454953.24842405</real>
+			<key>title</key>
+			<string>Build target FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>CA7E24B4-766E-4BC8-83E3-17A04601A44C</string>
+		</dict>
+	</dict>
+	<key>preserveOldLogs</key>
+	<true/>
+</dict>
+</plist>
