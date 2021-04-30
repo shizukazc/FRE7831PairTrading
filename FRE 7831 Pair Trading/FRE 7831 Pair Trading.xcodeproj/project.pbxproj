@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		040BB04A263BD221006E0FC1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 040BB049263BD221006E0FC1 /* main.cpp */; };
 		040BB052263BD318006E0FC1 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 040BB051263BD318006E0FC1 /* jsoncpp.cpp */; };
+		040BB055263BD3EC006E0FC1 /* MarketData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 040BB053263BD3EC006E0FC1 /* MarketData.cpp */; };
+		040BB058263BD40F006E0FC1 /* Database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 040BB056263BD40F006E0FC1 /* Database.cpp */; };
+		040BB05B263BD42E006E0FC1 /* PairTrading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 040BB059263BD42E006E0FC1 /* PairTrading.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,12 @@
 		040BB049263BD221006E0FC1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		040BB050263BD311006E0FC1 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
 		040BB051263BD318006E0FC1 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
+		040BB053263BD3EC006E0FC1 /* MarketData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MarketData.cpp; sourceTree = "<group>"; };
+		040BB054263BD3EC006E0FC1 /* MarketData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MarketData.hpp; sourceTree = "<group>"; };
+		040BB056263BD40F006E0FC1 /* Database.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Database.cpp; sourceTree = "<group>"; };
+		040BB057263BD40F006E0FC1 /* Database.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Database.hpp; sourceTree = "<group>"; };
+		040BB059263BD42E006E0FC1 /* PairTrading.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PairTrading.cpp; sourceTree = "<group>"; };
+		040BB05A263BD42E006E0FC1 /* PairTrading.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PairTrading.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +72,12 @@
 				040BB051263BD318006E0FC1 /* jsoncpp.cpp */,
 				040BB050263BD311006E0FC1 /* json */,
 				040BB049263BD221006E0FC1 /* main.cpp */,
+				040BB053263BD3EC006E0FC1 /* MarketData.cpp */,
+				040BB054263BD3EC006E0FC1 /* MarketData.hpp */,
+				040BB056263BD40F006E0FC1 /* Database.cpp */,
+				040BB057263BD40F006E0FC1 /* Database.hpp */,
+				040BB059263BD42E006E0FC1 /* PairTrading.cpp */,
+				040BB05A263BD42E006E0FC1 /* PairTrading.hpp */,
 			);
 			path = "FRE 7831 Pair Trading";
 			sourceTree = "<group>";
@@ -123,8 +138,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040BB05B263BD42E006E0FC1 /* PairTrading.cpp in Sources */,
 				040BB04A263BD221006E0FC1 /* main.cpp in Sources */,
 				040BB052263BD318006E0FC1 /* jsoncpp.cpp in Sources */,
+				040BB058263BD40F006E0FC1 /* Database.cpp in Sources */,
+				040BB055263BD3EC006E0FC1 /* MarketData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

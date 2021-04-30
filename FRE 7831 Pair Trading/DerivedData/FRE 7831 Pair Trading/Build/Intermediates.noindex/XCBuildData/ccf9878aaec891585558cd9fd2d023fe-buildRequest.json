@@ -1,0 +1,50 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "c756f11f609b58ceaa28f787c909d91d97c79db7317c121f5bf44a0a0b689c71"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "activeArchitecture" : "x86_64",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "platform" : "macosx",
+      "sdk" : "macosx11.3",
+      "sdkVariant" : "macos",
+      "supportedArchitectures" : [
+        "x86_64h",
+        "x86_64"
+      ],
+      "targetArchitecture" : "x86_64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/devonc/Desktop/FRE7831PairTrading/FRE 7831 Pair Trading/DerivedData/FRE 7831 Pair Trading/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/devonc/Desktop/FRE7831PairTrading/FRE 7831 Pair Trading/DerivedData/FRE 7831 Pair Trading/Build/Products",
+      "derivedDataPath" : "/Users/devonc/Desktop/FRE7831PairTrading/FRE 7831 Pair Trading/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/devonc/Desktop/FRE7831PairTrading/FRE 7831 Pair Trading/DerivedData/FRE 7831 Pair Trading/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/devonc/Desktop/FRE7831PairTrading/FRE 7831 Pair Trading/DerivedData/FRE 7831 Pair Trading/Index/PrecompiledHeaders",
+      "pchPath" : "/Users/devonc/Desktop/FRE7831PairTrading/FRE 7831 Pair Trading/DerivedData/FRE 7831 Pair Trading/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}
