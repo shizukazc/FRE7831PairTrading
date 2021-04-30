@@ -8,6 +8,13 @@
 #ifndef Database_hpp
 #define Database_hpp
 
-#include <stdio.h>
+#include <sqlite3.h>
+
+#define PairTradingDBPath "./PairTrading.db"
+
+int CreateDatabase();
+int OpenDatabase(sqlite3 * &db);
+int CreateTables(sqlite3 * &db);
+void CloseDatabase(sqlite3 * &db);
 
 #endif /* Database_hpp */
