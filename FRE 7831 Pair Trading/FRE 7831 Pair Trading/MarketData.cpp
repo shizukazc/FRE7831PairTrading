@@ -12,6 +12,7 @@
 #include <sstream>
 #include <curl/curl.h>
 #include <cstdio>
+#include <cmath>
 #include "json/json.h"
 
 std::string API_TOKEN = "605f41c6a29c69.96773141";
@@ -150,25 +151,6 @@ int ParseJson(const std::string &read_buffer, std::vector<TradeData> &TradeDataV
     return 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int PopulateStockPairPrices(const std::vector<std::pair<std::string,std::string>> &PairVec,
                             std::string start_date, std::string end_date, std::vector<StockPairPrices> &StockPairPricesVec)
 {
@@ -212,33 +194,84 @@ int PopulateStockPairPrices(const std::vector<std::pair<std::string,std::string>
             return -1;
         }
         
-        double open1d2 = 0.;
-        double open2d2 = 0.;
-        double close1d1 = 0.;
-        double close2d1 = 0.;
+        double open1 = 0.;
+        double open2 = 0.;
+        double close1 = 0.;
+        double close2 = 0.;
         
         for (int i = 0; i < TradeDataVec1.size(); i++)
         {
             TradeData &td1 = TradeDataVec1[i];
             TradeData &td2 = TradeDataVec2[i];
             
-            if (i == 0)
-            {
-                close1d1 = td1.GetClose();
-                close2d1 = td2.GetClose();
-                continue;
-            }
+            open1 = td1.GetOpen();
+            open2 = td2.GetOpen();
+            close1 = td1.GetClose();
+            close2 = td2.GetClose();
             
-            open1d2 = td1.GetOpen();
-            open2d2 = td2.GetOpen();
-            
-            PairPrice pp(open1d2, close1d1, open2d2, close2d1);
+            PairPrice pp(open1, close1, open2, close2);
+            spp.SetDailyPairPrice(td1.GetDate(), pp);
         }
         
-        read_buffer1.clear();
-        read_buffer2.clear();
-        
+        StockPairPricesVec.push_back(spp);
     }
     
     return 0;
+}
+
+void PairTradePerform(std::vector<StockPairPrices> &StockPairPricesVec)
+{
+    double close1d1 = 0.;
+    double close2d1 = 0.;
+    double open1d2 = 0.;
+    double open2d2 = 0.;
+    double close1d2 = 0.;
+    double close2d2 = 0.;
+    
+    std::string first_date;
+    
+    for (StockPairPrices &spp : StockPairPricesVec)
+    {
+        std::map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
+        
+        std::vector<std::string> DatesVec;
+        for (const std::pair<const std::string,PairPrice> &dp : dailyPairPrices) { DatesVec.push_back(dp.first); }
+        std::sort(DatesVec.begin(), DatesVec.end());
+        
+        for (std::vector<std::string>::const_iterator itr = DatesVec.begin(); itr != DatesVec.end(); itr++)
+        {
+            const PairPrice &pp = dailyPairPrices[*itr];
+            
+            if (itr == DatesVec.begin())
+            {
+                // First date
+                first_date = *itr;
+                close1d1 = pp.dClose1;
+                close2d1 = pp.dClose2;
+                continue;
+            }
+            
+            open1d2 = pp.dOpen1;
+            open2d2 = pp.dOpen2;
+            close1d2 = pp.dClose1;
+            close2d2 = pp.dClose2;
+            
+            double close_ratio = close1d1 / close2d1;
+            double open_ratio = open1d2 / open2d2;
+            
+            int N1 = ((abs(close_ratio - open_ratio) > spp.GetK() * spp.GetVolatility()) ? -1 : 1) * 10000;
+            int N2 = (int) std::round(-N1 * open_ratio);
+            
+            double pnl = N1 * (close1d2 - open1d2) + N2 * (close2d2 - open2d2);
+            
+            spp.UpdateProfitLoss(*itr, pnl);
+            
+            // Update
+            close1d1 = close1d2;
+            close2d1 = close2d2;
+        }
+        
+        // Remove the first record because it does not have P&L
+        dailyPairPrices.erase(first_date);
+    }
 }

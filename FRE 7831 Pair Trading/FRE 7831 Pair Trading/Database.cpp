@@ -403,3 +403,34 @@ int UpdateStockPairsVolatility(sqlite3 * &db, std::string bt_date)
     
     return rc ? -1 : 0;
 }
+
+int SelectStockPairsVolatility(sqlite3 * &db, const std::pair<std::string,std::string> &StockPair, double &volatility)
+{
+    int rc = 0;
+    char *error;
+    
+    char **result;
+    int row;
+    int col;
+    
+    const std::string &symbol1 = StockPair.first;
+    const std::string &symbol2 = StockPair.second;
+    
+    std::string sql_command = "SELECT volatility FROM StockPairs WHERE symbol1='" + symbol1 + "' AND symbol2='" + symbol2 + "';";
+    
+    rc = sqlite3_get_table(db, sql_command.c_str(), &result, &row, &col, &error);
+    if (rc)
+    {
+        std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
+        sqlite3_free(error);
+    }
+    else
+    {
+        std::cout << "Done retrieving StockPair(" + symbol1 + "," + symbol2 + ") volatility." << std::endl << std::endl;
+    }
+
+    volatility = result[0] ? std::stod(std::string(result[1])) : 0.;
+    
+    sqlite3_free_table(result);
+    return rc ? -1 : 0;
+}

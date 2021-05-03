@@ -28,4 +28,6 @@ int InsertStockPairs(sqlite3 * &db, const std::vector<std::pair<std::string,std:
 int InsertPairPrices(sqlite3 * &db);
 int UpdateStockPairsVolatility(sqlite3 * &db, std::string bt_date);
 
+int SelectStockPairsVolatility(sqlite3 * &db, const std::pair<std::string,std::string> &StockPair, double &volatility);
+
 #endif /* Database_hpp */

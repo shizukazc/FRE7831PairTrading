@@ -9,6 +9,7 @@
 #include <vector>
 #include <utility>
 #include <string>
+#include <ctime>
 #include "Database.hpp"
 #include "MarketData.hpp"
 #include "PairTrading.hpp"
@@ -129,9 +130,9 @@ int main(int argc, char *args[]) {
         cerr << "ERROR: Failed to read from " << pairfile << endl;
         return -1;
     }
-    
+
     bool init_env = (argc > 1 && std::string(args[1]) == "--init");
-    
+
     if (init_env)
     {
         // Initialize the environment for the program to run
@@ -139,6 +140,56 @@ int main(int argc, char *args[]) {
         {
             cerr << "ERROR: initialize() failed" << endl;
             return -1;
+        }
+    }
+    
+    sqlite3 *db;
+
+    // Open database
+    if (OpenDatabase(db) != 0) { return -1; }
+    
+    time_t t = std::time(0);
+    tm *now = std::localtime(&t);
+    string today = to_string(now->tm_year + 1900) + "-" + to_string(now->tm_mon + 1) + "-" + to_string(now->tm_mday);
+    
+    string backtest_start_date = "2020-12-31";
+    string backtest_end_date = today;
+    
+    std::vector<StockPairPrices> StockPairPricesVec;
+    
+    if (PopulateStockPairPrices(PairVec, backtest_start_date, backtest_end_date, StockPairPricesVec) != 0)
+    {
+        cerr << "ERROR: PopulateStockPairPrices() failed" << endl;
+        return -1;
+    }
+    
+    // Prepare for the calculation
+    for (StockPairPrices &spp : StockPairPricesVec)
+    {
+        double volatility = 0.;
+        if (SelectStockPairsVolatility(db, spp.GetStockPair(), volatility) != 0)
+        {
+            cerr << "ERROR: SelectStockPairsVolatility() failed" << endl;
+            CloseDatabase(db);
+            return -1;
+        }
+        
+        spp.SetVolatility(volatility);
+        spp.SetK(1.);
+    }
+    
+    // Perform calculation
+    PairTradePerform(StockPairPricesVec);
+    
+    for (StockPairPrices &spp : StockPairPricesVec)
+    {
+        pair<string,string> StockPair = spp.GetStockPair();
+        cout << "Stock1=" << StockPair.first << ", Stock2=" << StockPair.second << endl;
+        
+        map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
+        for (const std::pair<const std::string,PairPrice> &dp : dailyPairPrices)
+        {
+            cout << "  Date=" << dp.first << ", P&L=" << dp.second.dProfitLoss << endl;
         }
     }
     

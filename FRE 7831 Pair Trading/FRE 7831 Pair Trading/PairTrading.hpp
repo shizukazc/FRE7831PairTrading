@@ -184,7 +184,7 @@ public:
     
     // Getter
     const std::pair<std::string,std::string> & GetStockPair() const { return stockPair; }
-    const std::map<std::string,PairPrice> & GetDailyPrices() const { return dailyPairPrices; }
+    std::map<std::string,PairPrice> & GetDailyPrices() { return dailyPairPrices; }
     double GetVolatility() const { return volatility; }
     double GetK() const { return k; }
     
