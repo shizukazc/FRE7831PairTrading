@@ -122,7 +122,7 @@ int CreateTables(sqlite3 * &db)
         + "high REAL NOT NULL,"
         + "low REAL NOT NULL,"
         + "close REAL NOT NULL,"
-        + "adjusted REAL NOT NULL,"
+        + "adjusted_close REAL NOT NULL,"
         + "volume INT NOT NULL,"
         + "PRIMARY KEY(symbol, date));";
     
@@ -149,7 +149,7 @@ int CreateTables(sqlite3 * &db)
         + "high REAL NOT NULL,"
         + "low REAL NOT NULL,"
         + "close REAL NOT NULL,"
-        + "adjusted REAL NOT NULL,"
+        + "adjusted_close REAL NOT NULL,"
         + "volume INT NOT NULL,"
         + "PRIMARY KEY(symbol, date));";
     
@@ -179,12 +179,9 @@ int CreateTables(sqlite3 * &db)
         + "close2 REAL NOT NULL,"
         + "profit_loss REAL NOT NULL,"
         + "PRIMARY KEY(symbol1, symbol2, date),"
-        + "FOREIGN KEY(symbol1) REFERENCES PairOnePrices(symbol) ON DELETE CASCADE ON UPDATE CASCADE,"
-        + "FOREIGN KEY(date) REFERENCES PairOnePrices(date) ON DELETE CASCADE ON UPDATE CASCADE,"
-        + "FOREIGN KEY(symbol2) REFERENCES PairTwoPrices(symbol) ON DELETE CASCADE ON UPDATE CASCADE,"
-        + "FOREIGN KEY(date) REFERENCES PairTwoPrices(date) ON DELETE CASCADE ON UPDATE CASCADE,"
-        + "FOREIGN KEY(symbol1) REFERENCES StockPairs(symbol1) ON DELETE CASCADE ON UPDATE CASCADE,"
-        + "FOREIGN KEY(symbol2) REFERENCES StockPairs(symbol2) ON DELETE CASCADE ON UPDATE CASCADE);";
+        + "FOREIGN KEY(symbol1, date) REFERENCES PairOnePrices(symbol, date) ON DELETE CASCADE ON UPDATE CASCADE,"
+        + "FOREIGN KEY(symbol2, date) REFERENCES PairTwoPrices(symbol, date) ON DELETE CASCADE ON UPDATE CASCADE,"
+        + "FOREIGN KEY(symbol1, symbol2) REFERENCES StockPairs(symbol1, symbol2) ON DELETE CASCADE ON UPDATE CASCADE);";
     
     rc4 = sqlite3_exec(db, sql_createtable.c_str(), NULL, NULL, &error);
 
@@ -210,7 +207,7 @@ void CloseDatabase(sqlite3 * &db)
     std::cout << "Closed database " << PairTradingDBPath << std::endl << std::endl;
 }
 
-int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap, std::vector<std::pair<std::string,std::string>> &PairMap)
+int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap, const std::vector<std::pair<std::string,std::string>> &PairVec)
 {
     int rc = 0;
     char *error;
@@ -224,7 +221,7 @@ int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap,
     
     std::string sql_command;
     
-    for (const std::pair<std::string,std::string> &p : PairMap)
+    for (const std::pair<std::string,std::string> &p : PairVec)
     {
         std::string symbol1 = p.first;
         std::string symbol2 = p.second;
@@ -311,66 +308,41 @@ int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap,
     return 0;
 }
 
-//int InsertPairPrices(sqlite3 * &db, std::vector<StockPairPrices> &StockPairPricesVec)
-//{
-//    int rc = 0;
-//    char *error;
-//    std::string date;
-//    std::string symbol1;
-//    std::string symbol2;
-//    double open1;
-//    double close1;
-//    double open2;
-//    double close2;
-//    double profit_loss;
-//    
-//    std::string sql_command;
-//    
-//    for (const StockPairPrices &spp : StockPairPricesVec)
-//    {
-//        const std::map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
-//        
-//        symbol1 = spp.GetStockPair().first;
-//        symbol2 = spp.GetStockPair().second;
-//        
-//        for (const std::pair<const std::string,PairPrice> &pp : dailyPairPrices)
-//        {
-//            date = pp.first;
-//            open1 = pp.second.dOpen1;
-//            close1 = pp.second.dClose1;
-//            open2 = pp.second.dOpen2;
-//            close2 = pp.second.dClose2;
-//            profit_loss = 0.;
-//            
-//            std::cout << "Inserting an entry into table PairPrices..." << std::endl;
-//            
-//            std::ostringstream ss;
-//            ss << "INSERT INTO PairPrices(symbol1, symbol2, date, open1, close1, open2, close2, profit_loss) VALUES('"
-//                << symbol1.c_str() << "','"
-//                << symbol2.c_str() << "','"
-//                << date.c_str() << "',"
-//                << open1 << ","
-//                << close1 << ","
-//                << open2 << ","
-//                << close2 << ","
-//                << profit_loss << ");";
-//            sql_command = ss.str();
-//            
-//            rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
-//            if (rc)
-//            {
-//                std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
-//                sqlite3_free(error);
-//            }
-//            else
-//            {
-//                std::cout << "Inserted an entry into table PairPrices." << std::endl << std::endl;
-//            }
-//        }
-//    }
-//    
-//    return 0;
-//}
+int InsertStockPairs(sqlite3 * &db, const std::vector<std::pair<std::string,std::string>> &PairVec)
+{
+    int rc = 0;
+    char *error;
+    std::string sql_command;
+    
+    int id = 0;
+    
+    for (const std::pair<std::string,std::string> &p : PairVec)
+    {
+        const std::string &symbol1 = p.first;
+        const std::string &symbol2 = p.second;
+        id++;
+        
+        std::ostringstream ss;
+        ss << "INSERT INTO StockPairs(id, symbol1, symbol2, volatility, profit_loss) VALUES("
+            << id << ",'"
+            << symbol1 << "','"
+            << symbol2 << "',0.0,0.0);";
+        sql_command = ss.str();
+        
+        rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
+        if (rc)
+        {
+            std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
+            sqlite3_free(error);
+        }
+        else
+        {
+            std::cout << "Inserted an entry into table StockPairs." << std::endl << std::endl;
+        }
+    }
+    
+    return 0;
+}
 
 int InsertPairPrices(sqlite3 * &db)
 {
@@ -379,16 +351,19 @@ int InsertPairPrices(sqlite3 * &db)
     
     const char *sql_command =
         "INSERT INTO PairPrices "
-            "(SELECT StockPairs.symbol1 AS symbol1, StockPairs.symbol2 AS symbol2, "
-                    "PairOnePrices.date AS date, "
-                    "PairOnePrices.open AS open1, PairOnePrices.close AS close1, "
-                    "PairTwoPrices.open AS open2, PairTwoPrices.close AS close2, "
-                    "0 AS profit_loss) "
-            "FROM StockPairs, PairOnePrices, PairTwoPrices "
-            "WHERE (((StockPairs.symbol1 = PairOnePrices.symbol) AND "
-                    "(StockPairs.symbol2 = PairTwoPrices.symbol)) AND "
-                    "(PairOnePrices.date = PairTwoPrices.date)) "
-            "ORDER BY symbol1, symbol2;";
+        "SELECT StockPairs.symbol1 AS symbol1, "
+            "StockPairs.symbol2 AS symbol2, "
+            "PairOnePrices.date AS date, "
+            "PairOnePrices.open AS open1, "
+            "PairOnePrices.close AS close1, "
+            "PairTwoPrices.open AS open2, "
+            "PairTwoPrices.close AS close2, "
+            "0 AS profit_loss "
+        "FROM StockPairs, PairOnePrices, PairTwoPrices "
+        "WHERE (((StockPairs.symbol1 = PairOnePrices.symbol) "
+            "AND (StockPairs.symbol2 = PairTwoPrices.symbol)) "
+            "AND (PairOnePrices.date = PairTwoPrices.date)) "
+        "ORDER BY symbol1, symbol2;";
 
     rc = sqlite3_exec(db, sql_command, NULL, NULL, &error);
     if (rc)
@@ -404,16 +379,16 @@ int InsertPairPrices(sqlite3 * &db)
     return rc ? -1 : 0;
 }
 
-int UpdateStockPairsVolatility(sqlite3 * &db, std::string bt_startdate)
+int UpdateStockPairsVolatility(sqlite3 * &db, std::string bt_date)
 {
     int rc = 0;
     char *error;
     
     std::string sql_command = std::string("UPDATE StockPairs SET volatility = ")
-    + "(SELECT(AVG((Close1/Close2)*(Close1/Close2))-AVG(Close1/Close2)*AVG(Close1/Close2)) AS variance "
-    + "FROM PairPrices "
-    + "WHERE StockPairs.symbol1 = PairPrices.symbol1 AND StockPairs.symbol2 = PairPrices.symbol2 AND PairPrices.date <= \'"
-    + bt_startdate + "\');";
+        + "(SELECT(AVG((close1/close2)*(close1/close2))-AVG(close1/close2)*AVG(close1/close2)) AS variance "
+        + "FROM PairPrices "
+        + "WHERE StockPairs.symbol1 = PairPrices.symbol1 AND StockPairs.symbol2 = PairPrices.symbol2 AND PairPrices.date <= \'"
+        + bt_date + "\');";
     
     rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
     if (rc)

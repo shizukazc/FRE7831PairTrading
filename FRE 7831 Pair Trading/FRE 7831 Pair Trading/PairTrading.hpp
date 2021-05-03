@@ -33,6 +33,7 @@ public:
     TradeData(std::string sDate_, double dOpen_, double dHigh_, double dLow_, double dClose_, double dAdjClose_, long lVolume_)
     {
         this->sDate = sDate_;
+        this->dOpen = dOpen_;
         this->dHigh = dHigh_;
         this->dLow = dLow_;
         this->dClose = dClose_;
@@ -44,6 +45,7 @@ public:
     TradeData(const TradeData &other)
     {
         this->sDate = other.sDate;
+        this->dOpen = other.dOpen;
         this->dHigh = other.dHigh;
         this->dLow = other.dLow;
         this->dClose = other.dClose;
@@ -55,6 +57,7 @@ public:
     TradeData operator=(const TradeData &other)
     {
         this->sDate = other.sDate;
+        this->dOpen = other.dOpen;
         this->dHigh = other.dHigh;
         this->dLow = other.dLow;
         this->dClose = other.dClose;

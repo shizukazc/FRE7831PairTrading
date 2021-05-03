@@ -15,106 +15,134 @@
 
 using namespace std;
 
-int main() {
-    const char *pairfile = "./PairTrading.txt";
-    
-    int ret = CreateDatabase();
-    
-    if (ret != SQLITE_OK)
+const char *pairfile = "./PairTrading.txt";
+
+int initialize(const vector<pair<string,string>> &PairVec)
+{
+    // Create database
+    if (CreateDatabase() != SQLITE_OK)
     {
         cerr << "Failed to create database " << PairTradingDBPath << endl;
         return -1;
     }
-    
+
     cout << "Created database " << PairTradingDBPath << endl;
-    
+
     sqlite3 *db;
-    
-    if (OpenDatabase(db) != 0) { return -1; }
-    if (CreateTables(db) != 0) { return -1; }
-    
-    int rc = 0;
-    
-    vector<pair<string,string>> PairVec;
-    
-    if ((rc = ReadPairsFromFile(pairfile, PairVec)) != 0)
+
+    // Open database
+    if (OpenDatabase(db) != 0)
     {
-        cerr << "Failed to read from " << pairfile << endl;
+        return -1;
+    }
+
+    // Create tables
+    if (CreateTables(db) != 0)
+    {
+        CloseDatabase(db);
         return -1;
     }
     
-    string url_common_daily = "https://eodhistoricaldata.com/api/eod/";
-    string api_token = "605f41c6a29c69.96773141";
-    string url_request_daily1;
-    string url_request_daily2;
-    
-    string start_date = "2021-01-01";
-    string end_date = "2021-02-01";
-    
     map<string,Stock> StockMap;
     
+    string url_request_daily1;
+    string url_request_daily2;
+
+    // Model build date is from the start of 2011 to the end of 2020
+    string start_date = "2019-01-01";
+    string end_date = "2020-12-31";
+    string bt_start_date = "2021-01-01";
+
     for (const pair<string,string> &p : PairVec)
     {
         string symbol1 = p.first;
         string symbol2 = p.second;
-        
-        url_request_daily1 = url_common_daily + symbol1 + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
-        url_request_daily2 = url_common_daily + symbol2 + ".US?from=" + start_date + "&to=" + end_date + "&api_token=" + api_token + "&period=d&fmt=json";
-        
+
+        url_request_daily1 = BuildDailyRequestURL(symbol1, start_date, end_date);
+        url_request_daily2 = BuildDailyRequestURL(symbol2, start_date, end_date);
+
         string read_buffer;
         if (PullMarketData(url_request_daily1, read_buffer) != 0)
         {
-            cerr << "Failed to pull market data: " << symbol1 << endl;
-            CloseDatabase(db);
-            return -1;
+            cerr << "ERROR: Failed to pull market data: " << symbol1 << endl;
+            goto error_exit;
         }
-        
+
         if (PopulateStocks(read_buffer, symbol1, StockMap) != 0)
         {
-            cerr << "Failed to insert into StockMap: " << symbol1 << endl;
-            CloseDatabase(db);
-            return -1;
+            cerr << "ERROR: Failed to insert into StockMap: " << symbol1 << endl;
+            goto error_exit;
         }
-        
+
         read_buffer.clear();
         if (PullMarketData(url_request_daily2, read_buffer) != 0)
         {
-            cerr << "Failed to pull market data: " << symbol2 << endl;
-            CloseDatabase(db);
-            return -1;
+            cerr << "ERROR: Failed to pull market data: " << symbol2 << endl;
+            goto error_exit;
         }
-        
+
         if (PopulateStocks(read_buffer, symbol2, StockMap) != 0)
         {
-            cerr << "Failed to insert into StockMap: " << symbol2 << endl;
-            CloseDatabase(db);
+            cerr << "ERROR: Failed to insert into StockMap: " << symbol2 << endl;
+            goto error_exit;
+        }
+    }
+
+    if (InsertIndividualPrices(db, StockMap, PairVec) != 0)
+    {
+        cerr << "ERROR: Failed to insert data into PairOnePrices and PairTwoPrices" << endl;
+        goto error_exit;
+    }
+    
+    if (InsertStockPairs(db, PairVec) != 0)
+    {
+        cerr << "ERROR: Failed to insert data into StockPairs" << endl;
+        goto error_exit;
+    }
+
+    if (InsertPairPrices(db) != 0)
+    {
+        cerr << "ERROR: Failed to insert into PairPrices" << endl;
+        goto error_exit;
+    }
+    
+    if (UpdateStockPairsVolatility(db, bt_start_date) != 0)
+    {
+        cerr << "ERROR: Failed to update StockPairs volatility" << endl;
+        goto error_exit;
+    }
+
+    CloseDatabase(db);
+    return 0;
+    
+error_exit:
+    CloseDatabase(db);
+    return -1;
+}
+
+int main(int argc, char *args[]) {
+    
+    vector<pair<string,string>> PairVec;
+
+    if (ReadPairsFromFile(pairfile, PairVec) != 0)
+    {
+        cerr << "ERROR: Failed to read from " << pairfile << endl;
+        return -1;
+    }
+    
+    bool init_env = (argc > 1 && std::string(args[1]) == "--init");
+    
+    if (init_env)
+    {
+        // Initialize the environment for the program to run
+        if (initialize(PairVec) != 0)
+        {
+            cerr << "ERROR: initialize() failed" << endl;
             return -1;
         }
     }
     
-    if ((rc = InsertIndividualPrices(db, StockMap, PairVec)) != 0)
-    {
-        cerr << "Failed to insert data into PairOnePrices and PairTwoPrices" << endl;
-        CloseDatabase(db);
-        return -1;
-    }
-    
-//    vector<string> DateVec;
-//    if (GetDateVec(StockMap, DateVec) != 0)
-//    {
-//        cerr << "Failed to get DateVec" << endl;
-//        CloseDatabase(db);
-//        return -1;
-//    }
-    
-    if ((rc = InsertPairPrices(db)) != 0)
-    {
-        cerr << "Failed to insert into PairPrices" << endl;
-        CloseDatabase(db);
-        return -1;
-    }
-    
-    CloseDatabase(db);
+    cout << "Here is the menu" << endl;
     
     return 0;
 }

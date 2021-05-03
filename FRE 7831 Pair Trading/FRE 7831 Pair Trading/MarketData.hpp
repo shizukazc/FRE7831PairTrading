@@ -15,9 +15,13 @@
 #include "PairTrading.hpp"
 
 int ReadPairsFromFile(const char *infile, std::vector<std::pair<std::string,std::string>> &PairVec);
-//int GetDateVec(const std::map<std::string,Stock> &StockMap, std::vector<std::string> &DateVec);
-int PullMarketData(const std::string& url_request, std::string& read_buffer);
+int PullMarketData(const std::string &url_request, std::string &read_buffer);
 int PopulateStocks(const std::string &read_buffer, std::string symbol, std::map<std::string,Stock> &StockMap);
-//int PopulateStockPairPrices(const std::vector<std::pair<std::string,std::string>> &PairVec, const std::map<std::string,Stock> &StockMap, const std::vector<std::string> DateVec, std::vector<StockPairPrices> &StockPairPricesVec);
+std::string BuildDailyRequestURL(std::string symbol, std::string start_date, std::string end_date);
+
+// For backtest
+int ParseJson(const std::string &read_buffer, std::vector<TradeData> &TradeDataVec);
+int PopulateStockPairPrices(const std::vector<std::pair<std::string,std::string>> &PairVec,
+                            std::string start_date, std::string end_date, std::vector<StockPairPrices> &StockPairPricesVec);
 
 #endif /* MarketData_hpp */
