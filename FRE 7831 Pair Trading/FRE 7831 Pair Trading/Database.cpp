@@ -355,9 +355,11 @@ int InsertPairPrices(sqlite3 * &db)
             "StockPairs.symbol2 AS symbol2, "
             "PairOnePrices.date AS date, "
             "PairOnePrices.open AS open1, "
-            "PairOnePrices.close AS close1, "
+//            "PairOnePrices.close AS close1, "
+            "PairOnePrices.adjusted_close AS close1, "  // Use adjusted_close for historical data
             "PairTwoPrices.open AS open2, "
-            "PairTwoPrices.close AS close2, "
+            "PairTwoPrices.adjusted_close AS close2, "  // Use adjusted_close for historical data
+//            "PairTwoPrices.close AS close2, "
             "0 AS profit_loss "
         "FROM StockPairs, PairOnePrices, PairTwoPrices "
         "WHERE (((StockPairs.symbol1 = PairOnePrices.symbol) "

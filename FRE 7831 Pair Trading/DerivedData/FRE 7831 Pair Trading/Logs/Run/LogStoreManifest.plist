@@ -380,6 +380,40 @@
 			<key>uniqueIdentifier</key>
 			<string>5FFD61B5-12C1-4BD3-BFAE-512FCB45E476</string>
 		</dict>
+		<key>61861061-64AC-490F-903A-91807CFBA896</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>61861061-64AC-490F-903A-91807CFBA896.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641794547.49841106</real>
+			<key>timeStoppedRecording</key>
+			<real>641794552.19808602</real>
+			<key>title</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>61861061-64AC-490F-903A-91807CFBA896</string>
+		</dict>
 		<key>68CCE858-3793-4F04-B7CD-DDB797C789E8</key>
 		<dict>
 			<key>className</key>
@@ -753,6 +787,40 @@
 			<string>Run FRE 7831 Pair Trading</string>
 			<key>uniqueIdentifier</key>
 			<string>AA4186EA-22FD-467A-A8A8-CA2FABCE45E0</string>
+		</dict>
+		<key>AD62A8F9-0B5E-430F-9602-6D57C44CB315</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>AD62A8F9-0B5E-430F-9602-6D57C44CB315.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641794197.14399898</real>
+			<key>timeStoppedRecording</key>
+			<real>641794221.85056698</real>
+			<key>title</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>AD62A8F9-0B5E-430F-9602-6D57C44CB315</string>
 		</dict>
 		<key>AF01056D-4512-42DB-B744-B85D972E537D</key>
 		<dict>
@@ -1161,6 +1229,74 @@
 			<string>Run FRE 7831 Pair Trading</string>
 			<key>uniqueIdentifier</key>
 			<string>CFC617B8-0B62-4E7E-B920-C6C3F3298539</string>
+		</dict>
+		<key>E3BD2038-37B6-4C02-B317-194B8BE0F8E5</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>E3BD2038-37B6-4C02-B317-194B8BE0F8E5.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641796304.34422696</real>
+			<key>timeStoppedRecording</key>
+			<real>641796408.84869504</real>
+			<key>title</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>E3BD2038-37B6-4C02-B317-194B8BE0F8E5</string>
+		</dict>
+		<key>EA74CF48-BB03-4A0D-945C-8848B2CBBDEC</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>EA74CF48-BB03-4A0D-945C-8848B2CBBDEC.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641794554.24887896</real>
+			<key>timeStoppedRecording</key>
+			<real>641794564.66943097</real>
+			<key>title</key>
+			<string>Run FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>EA74CF48-BB03-4A0D-945C-8848B2CBBDEC</string>
 		</dict>
 		<key>EF51B60D-2EB0-4ED7-9BBF-8ED00FD4F3C4</key>
 		<dict>
