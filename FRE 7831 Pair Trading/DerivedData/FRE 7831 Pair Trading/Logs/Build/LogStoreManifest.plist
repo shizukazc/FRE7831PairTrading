@@ -1706,6 +1706,40 @@
 			<key>uniqueIdentifier</key>
 			<string>AC74AED7-BB4B-421E-9AB5-704087A3A2D4</string>
 		</dict>
+		<key>ACD37746-6588-40CB-8564-44E03AAFCC81</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>ACD37746-6588-40CB-8564-44E03AAFCC81.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641939870.43291605</real>
+			<key>timeStoppedRecording</key>
+			<real>641939871.88387704</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>ACD37746-6588-40CB-8564-44E03AAFCC81</string>
+		</dict>
 		<key>B2CE060C-FB2D-4CD9-BB78-5640FA1A66CF</key>
 		<dict>
 			<key>className</key>

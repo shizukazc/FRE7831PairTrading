@@ -123,6 +123,16 @@ int GetDate(string &date)
     return -1;
 }
 
+int GetK(double &K)
+{
+    string user_input;
+    cin >> user_input;
+    
+    K = stod(user_input);
+    
+    return K > 0 ? 0 : -1;
+}
+
 int main()
 {
     if (access(DB_FILE, F_OK) != -1) { remove(DB_FILE); }
@@ -343,6 +353,7 @@ int main()
                 
                 string probtest_sdate;
                 string probtest_edate;
+                double K = 1.;
                 int status = 0;
                 
                 do
@@ -384,6 +395,14 @@ int main()
                         status = -1;
                         break;
                     }
+                    
+                    cout << "Enter K (K>0): ";
+                    if (GetK(K))
+                    {
+                        cerr << "Invalid K value. Going back to menu." << endl;
+                        status = -1;
+                        break;
+                    }
                 } while (false);
                 
                 if (!status)
@@ -408,7 +427,7 @@ int main()
                         }
 
                         spp.SetVolatility(volatility);
-                        spp.SetK(1.);
+                        spp.SetK(K);
                         
                         StockPairPricesVec.push_back(spp);
                     }
