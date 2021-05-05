@@ -12,6 +12,13 @@
 #include <algorithm>
 #include <sstream>
 
+const std::vector<std::string> tables {
+    std::string("StockPairs"),
+    std::string("PairOnePrices"),
+    std::string("PairTwoPrices"),
+    std::string("PairPrices")
+};
+
 int CreateDatabase(const char *dbfile)
 {
     sqlite3 *pDb = NULL;
@@ -64,13 +71,6 @@ int CreateTables(sqlite3 * &db)
     char *error = NULL;
     int status = 0;
     
-    std::vector<std::string> tables {
-        std::string("StockPairs"),
-        std::string("PairOnePrices"),
-        std::string("PairTwoPrices"),
-        std::string("PairPrices")
-    };
-    
     std::string StockPairs_sql_create_table = std::string("CREATE TABLE IF NOT EXISTS StockPairs ")
         + "(id INT NOT NULL,"
         + "symbol1 CHAR(20) NOT NULL,"
@@ -121,19 +121,10 @@ int CreateTables(sqlite3 * &db)
     sql_create_table_map.insert({ std::string("PairTwoPrices"), PairTwoPrices_sql_create_table });
     sql_create_table_map.insert({ std::string("PairPrices"), PairPrices_sql_create_table });
     
-    for (std::vector<std::string>::reverse_iterator rit = tables.rbegin(); rit != tables.rend(); rit++)
-    {
-        const std::string &table = *rit;
-        std::string sql_droptable = std::string("DROP TABLE IF EXISTS ") + table + ";";
-
-        if (sqlite3_exec(db, sql_droptable.c_str(), NULL, NULL, &error) != SQLITE_OK)
-        {
-            std::cerr << "SQLite3 failed to drop " << table << " table." << std::endl;
-            sqlite3_free(error);
-            return -1;
-        }
-    }
+    // Drop the tables if they already exist in the database
+    DropTables(db);
     
+    // Create tables
     for (const std::pair<const std::string,std::string> &p : sql_create_table_map)
     {
         std::cout << "Creating table " << p.first << "..." << std::endl;
@@ -152,6 +143,26 @@ int CreateTables(sqlite3 * &db)
     return status;
 }
 
+int DropTables(sqlite3 * &db)
+{
+    char *error;
+    
+    for (std::vector<std::string>::const_reverse_iterator rit = tables.rbegin(); rit != tables.rend(); rit++)
+    {
+        const std::string &table = *rit;
+        std::string sql_droptable = std::string("DROP TABLE IF EXISTS ") + table + ";";
+
+        if (sqlite3_exec(db, sql_droptable.c_str(), NULL, NULL, &error) != SQLITE_OK)
+        {
+            std::cerr << "SQLite3 failed to drop " << table << " table." << std::endl;
+            sqlite3_free(error);
+            return -1;
+        }
+    }
+    
+    return 0;
+}
+
 void CloseDatabase(sqlite3 * &db)
 {
     std::cout << "Closing database..." << std::endl;
@@ -160,107 +171,6 @@ void CloseDatabase(sqlite3 * &db)
     
     std::cout << "Done." << std::endl << std::endl;
 }
-
-//int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap, const std::vector<std::pair<std::string,std::string>> &PairVec)
-//{
-//    int rc = 0;
-//    char *error;
-//    std::string date;
-//    double open;
-//    double high;
-//    double low;
-//    double close;
-//    double adjclose;
-//    long volume;
-//
-//    std::string sql_command;
-//
-//    for (const std::pair<std::string,std::string> &p : PairVec)
-//    {
-//        std::string symbol1 = p.first;
-//        std::string symbol2 = p.second;
-//
-//        const Stock &stock1 = StockMap[symbol1];
-//        const Stock &stock2 = StockMap[symbol2];
-//
-//        const std::vector<TradeData> &trades1 = stock1.GetTrades();
-//        const std::vector<TradeData> &trades2 = stock2.GetTrades();
-//
-//        for (const TradeData &td : trades1)
-//        {
-//            date = td.GetDate();
-//            open = td.GetOpen();
-//            high = td.GetHigh();
-//            low = td.GetLow();
-//            close = td.GetClose();
-//            adjclose = td.GetAdjClose();
-//            volume = td.GetVolume();
-//
-//            std::cout << "Inserting an entry into table PairOnePrices..." << std::endl;
-//
-//            std::ostringstream ss;
-//            ss << "INSERT INTO PairOnePrices(symbol, date, open, high, low, close, adjusted_close, volume) VALUES('"
-//                << symbol1.c_str() << "','"
-//                << date.c_str() << "',"
-//                << open << ","
-//                << high << ","
-//                << low << ","
-//                << close << ","
-//                << adjclose << ","
-//                << volume << ")";
-//            sql_command = ss.str();
-//
-//            rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
-//            if (rc)
-//            {
-//                std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
-//                sqlite3_free(error);
-//            }
-//            else
-//            {
-//                std::cout << "Inserted an entry into table PairOnePrices." << std::endl << std::endl;
-//            }
-//        }
-//
-//        for (const TradeData &td : trades2)
-//        {
-//            date = td.GetDate();
-//            open = td.GetOpen();
-//            high = td.GetHigh();
-//            low = td.GetLow();
-//            close = td.GetClose();
-//            adjclose = td.GetAdjClose();
-//            volume = td.GetVolume();
-//
-//            std::cout << "Inserting an entry into table PairTwoPrices..." << std::endl;
-//
-//            std::ostringstream ss;
-//            ss << "INSERT INTO PairTwoPrices(symbol, date, open, high, low, close, adjusted_close, volume) VALUES('"
-//                << symbol2.c_str() << "','"
-//                << date.c_str() << "',"
-//                << open << ","
-//                << high << ","
-//                << low << ","
-//                << close << ","
-//                << adjclose << ","
-//                << volume << ");";
-//            sql_command = ss.str();
-//
-//            rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
-//            if (rc)
-//            {
-//                std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
-//                sqlite3_free(error);
-//            }
-//            else
-//            {
-//                std::cout << "Inserted an entry into table PairTwoPrices." << std::endl << std::endl;
-//            }
-//        }
-//    }
-//
-//    return 0;
-//}
 
 int InsertPairKPrices(sqlite3 * &db, bool IsPairOne, const Stock &stock)
 {
@@ -311,20 +221,6 @@ int InsertPairKPrices(sqlite3 * &db, bool IsPairOne, const Stock &stock)
     
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 int InsertStockPairs(sqlite3 * &db, const std::vector<std::pair<std::string,std::string>> &PairVec)
 {
@@ -517,4 +413,76 @@ int GetPairPriceMap(sqlite3 * &db, std::string sdate, std::string edate, StockPa
     sqlite3_free_table(result);
     
     return rc ? -1 : 0;
+}
+
+int UpdateBacktestPnL(sqlite3 * &db, std::vector<StockPairPrices> &StockPairPricesVec)
+{
+    int rc, status = 0;
+    char *error;
+    std::string date;
+    std::string symbol1;
+    std::string symbol2;
+    int id = 1;
+    double profit_loss;
+    
+    std::string sql_command;
+    
+    sqlite3_exec(db, "BEGIN TRANSACTION", NULL, NULL, &error);
+    
+    for (const StockPairPrices &spp : StockPairPricesVec)
+    {
+        const std::map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
+        symbol1 = spp.GetStockPair().first;
+        symbol2 = spp.GetStockPair().second;
+        
+        int count = 0;
+        double tot = 0.;
+        
+        for (const std::pair<const std::string,PairPrice> &dpp : dailyPairPrices)
+        {
+            date = dpp.first;
+            profit_loss = dpp.second.dProfitLoss;
+            tot += profit_loss;
+            
+            sql_command = std::string("UPDATE PairPrices SET profit_loss = ")
+                + std::to_string(profit_loss)
+                + " WHERE PairPrices.symbol1 = '" + symbol1
+                + "' AND PairPrices.symbol2 = '" + symbol2
+                + "' AND PairPRices.date = '" + date + "';";
+            
+            rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
+            if (rc)
+            {
+                status = -1;
+                std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
+                sqlite3_free(error);
+            }
+            {
+                count++;
+            }
+        }
+        
+        std::cout << "Updated " << count << " entries for StockPair(" << symbol1 << "," << symbol2 << ")'s P&L in PairPrices. " << std::endl;
+        
+        sql_command = std::string("UPDATE StockPairs SET profit_loss = ")
+            + std::to_string(tot) + " WHERE StockPairs.id = " + std::to_string(id) + ";";
+        
+        rc = sqlite3_exec(db, sql_command.c_str(), NULL, NULL, &error);
+        if (rc)
+        {
+            status = -1;
+            std::cerr << "Error executing SQLite3 statement: " << sqlite3_errmsg(db) << std::endl << std::endl;
+            sqlite3_free(error);
+        }
+        else
+        {
+            std::cout << "Updated P&L for StockPair(" << symbol1 << "," << symbol2 << ") in StockPairs."  << std::endl;
+        }
+
+        id += 1;
+    }
+    
+    sqlite3_exec(db, "COMMIT TRANSACTION", NULL, NULL, &error);
+    
+    return status ? -1 : 0;
 }

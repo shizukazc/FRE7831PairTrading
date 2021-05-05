@@ -76,16 +76,7 @@ public:
     long GetVolume() const { return lVolume; }
     
     // Friend
-    friend std::ostream & operator<<(std::ostream &out, const TradeData &tradedata)
-    {
-        out << "    sDate = " << tradedata.GetDate() << std::endl;
-        out << "    dOpen = " << tradedata.GetOpen() << std::endl;
-        out << "    dHigh = " << tradedata.GetHigh() << std::endl;
-        out << "     dLow = " << tradedata.GetLow() << std::endl;
-        out << "   dClose = " << tradedata.GetClose() << std::endl;
-        out << "dAdjClose = " << tradedata.GetAdjClose() << std::endl;
-        return out;
-    }
+    friend std::ostream & operator<<(std::ostream &out, const TradeData &tradedata);
 };
 
 class Stock
@@ -132,12 +123,7 @@ public:
     }
     
     // Friend
-    friend std::ostream & operator<<(std::ostream &out, const Stock &stock)
-    {
-        out << "Symbol: " << stock.GetSymbol() << std::endl;
-        for (const TradeData &tradedata : stock.GetTrades()) { out << tradedata; }
-        return out;
-    }
+    friend std::ostream & operator<<(std::ostream &out, const Stock &stock);
 };
 
 struct PairPrice
@@ -161,13 +147,7 @@ struct PairPrice
         this->dProfitLoss = 0.;
     }
     
-    friend std::ostream & operator<<(std::ostream &out, const PairPrice &pp)
-    {
-        out << "open1=" << pp.dOpen1 << ", close1=" << pp.dClose1
-            << ", open2=" << pp.dOpen2 << ", close2=" << pp.dClose2
-            << ", P&L=" << pp.dProfitLoss;
-        return out;
-    }
+    friend std::ostream & operator<<(std::ostream &out, const PairPrice &pp);
 };
 
 class StockPairPrices
@@ -197,6 +177,9 @@ public:
     double GetVolatility() const { return volatility; }
     double GetK() const { return k; }
     
+    // Calculate the total profit and loss
+    double GetTotalPnL() const;
+    
     // Setter
     void SetVolatility(double volatility_) { this->volatility = volatility_; }
     void SetK(double k_) { this->k = k_; }
@@ -211,17 +194,7 @@ public:
         dailyPairPrices[sDate_].dProfitLoss = dProfitLoss_;
     }
     
-    friend std::ostream & operator<<(std::ostream &out, const StockPairPrices &spp)
-    {
-        out << "(" << spp.GetStockPair().first << "," << spp.GetStockPair().second
-            << "), vol=" << spp.GetVolatility() << ", K=" << spp.GetK() << std::endl;
-        for (const std::pair<const std::string,PairPrice> &dp : spp.GetDailyPrices())
-        {
-            out << "Date=" << dp.first << ", " << dp.second << std::endl;
-        }
-        
-        return out;
-    }
+    friend std::ostream & operator<<(std::ostream &out, const StockPairPrices &spp);
 };
 
 #endif /* PairTrading_hpp */

@@ -92,7 +92,7 @@ void PrintMenu(const map<char,pair<string,string>> &menu)
 
 int GetSelection(char &selection)
 {
-    std::string user_input;
+    string user_input;
     
     cin >> user_input;
     if (user_input.length() != 1) { return -1; }
@@ -103,6 +103,24 @@ int GetSelection(char &selection)
     selection = user_input[0];
     
     return 0;
+}
+
+int GetDate(string &date)
+{
+    string user_input;
+    cin >> user_input;
+    
+    struct tm date_tm;
+    char buf[32];
+    
+    if (strptime(user_input.c_str(), "%Y-%m-%d", &date_tm))
+    {
+        strftime(buf, 32, "%Y-%m-%d", &date_tm);
+        date = string(buf);
+        return 0;
+    }
+    
+    return -1;
 }
 
 int main()
@@ -117,7 +135,7 @@ int main()
     vector<pair<string,string>> PairVec;
     unordered_set<string> PairOneStocks;
     unordered_set<string> PairTwoStocks;
-    map<string,Stock> StockMap;
+    vector<StockPairPrices> StockPairPricesVec;
     
     time_t t = std::time(0);
     tm *now = std::localtime(&t);
@@ -272,7 +290,7 @@ int main()
 
             case 'E':
             {
-                vector<StockPairPrices> StockPairPricesVec;
+                StockPairPricesVec.clear();
                 
                 for (const std::pair<std::string,std::string> &p : PairVec)
                 {
@@ -309,19 +327,114 @@ int main()
 
             case 'F':
             {
+                if (UpdateBacktestPnL(db, StockPairPricesVec) != 0)
+                {
+                    cerr << "ERROR: UpdateBacktestPnL() failed" << endl;
+                    CloseDatabase(db);
+                    return -1;
+                }
+                
                 break;
             }
 
             case 'G':
             {
+                StockPairPricesVec.clear();
+                
+                string probtest_sdate;
+                string probtest_edate;
+                int status = 0;
+                
+                do
+                {
+                    cout << "Enter probation test start date: ";
+                    if (GetDate(probtest_sdate))
+                    {
+                        cerr << "Invalid date. Going back to menu." << endl;
+                        status = -1;
+                        break;
+                    }
+                    
+                    if (probtest_sdate < BT_SDATE)
+                    {
+                        cerr << "Probation test start date cannot be earlier than " << BT_SDATE << "." << endl;
+                        status = -1;
+                        break;
+                    }
+                    
+                    cout << "Enter probation test end date: ";
+                    if (GetDate(probtest_edate))
+                    {
+                        cerr << "Invalid date. Going back to menu." << endl;
+                        status = -1;
+                        break;
+                    }
+                    
+                    if (probtest_edate > BT_EDATE)
+                    {
+                        cerr << "Probation test end date cannot be later than " + BT_EDATE + "." << endl;
+                        status = -1;
+                        break;
+                    }
+                    
+                    if (probtest_edate <= probtest_sdate)
+                    {
+                        cerr << "Probation test end date cannot be earlier than its start date." << endl;
+                        cerr << "Going back to menu." << endl;
+                        status = -1;
+                        break;
+                    }
+                } while (false);
+                
+                if (!status)
+                {
+                    for (const std::pair<std::string,std::string> &p : PairVec)
+                    {
+                        StockPairPrices spp(p);
+                        
+                        if (GetPairPriceMap(db, probtest_sdate, probtest_edate, spp) != 0)
+                        {
+                            cerr << "ERROR: GetPairPriceMap() failed" << endl;
+                            CloseDatabase(db);
+                            return -1;
+                        }
+                        
+                        double volatility = 0.;
+                        if (SelectStockPairsVolatility(db, spp.GetStockPair(), volatility) != 0)
+                        {
+                            cerr << "ERROR: SelectStockPairsVolatility() failed" << endl;
+                            CloseDatabase(db);
+                            return -1;
+                        }
+
+                        spp.SetVolatility(volatility);
+                        spp.SetK(1.);
+                        
+                        StockPairPricesVec.push_back(spp);
+                    }
+                    
+                    // Perform calculation
+                    PairTradePerform(StockPairPricesVec);
+                    
+                    for (const StockPairPrices &spp : StockPairPricesVec) { cout << spp << endl; }
+                }
+                
                 break;
             }
 
             case 'H':
             {
+                if (DropTables(db) != 0)
+                {
+                    cerr << "ERROR: Failed to Drop tables." << endl;
+                    CloseDatabase(db);
+                    return -1;
+                }
+                cout << "All tables are dropped." << endl;
+                
                 break;
             }
-                
+
             // Special purpose
             case 'M':
             {
@@ -359,85 +472,3 @@ int main()
     cout << "Program terminated." << endl;
     return 0;
 }
-
-//int main() {
-//
-//    vector<pair<string,string>> PairVec;
-//
-//    if (ReadPairsFromFile(pairfile, PairVec) != 0)
-//    {
-//        cerr << "ERROR: Failed to read from " << pairfile << endl;
-//        return -1;
-//    }
-//
-//    // TODO: This is just for getting bak file. Modify it once done.
-//    bool init_env = true;
-//    // bool init_env = (argc > 1 && std::string(args[1]) == "--init");
-//
-//    if (init_env)
-//    {
-//        // Initialize the environment for the program to run
-//        if (initialize(PairVec) != 0)
-//        {
-//            cerr << "ERROR: initialize() failed" << endl;
-//            return -1;
-//        }
-//    }
-//
-//    // TODO: This is just for getting bak file. Remove it once done.
-//    return 0;
-//
-//    sqlite3 *db;
-//
-//    // Open database
-//    if (OpenDatabase(db) != 0) { return -1; }
-//
-//    time_t t = std::time(0);
-//    tm *now = std::localtime(&t);
-//    string today = to_string(now->tm_year + 1900) + "-" + to_string(now->tm_mon + 1) + "-" + to_string(now->tm_mday);
-//
-//    string backtest_start_date = "2020-12-31";
-//    string backtest_end_date = today;
-//
-//    std::vector<StockPairPrices> StockPairPricesVec;
-//
-//    if (PopulateStockPairPrices(PairVec, backtest_start_date, backtest_end_date, StockPairPricesVec) != 0)
-//    {
-//        cerr << "ERROR: PopulateStockPairPrices() failed" << endl;
-//        return -1;
-//    }
-//
-//    // Prepare for the calculation
-//    for (StockPairPrices &spp : StockPairPricesVec)
-//    {
-//        double volatility = 0.;
-//        if (SelectStockPairsVolatility(db, spp.GetStockPair(), volatility) != 0)
-//        {
-//            cerr << "ERROR: SelectStockPairsVolatility() failed" << endl;
-//            CloseDatabase(db);
-//            return -1;
-//        }
-//
-//        spp.SetVolatility(volatility);
-//        spp.SetK(1.);
-//    }
-//
-//    // Perform calculation
-//    PairTradePerform(StockPairPricesVec);
-//
-//    for (StockPairPrices &spp : StockPairPricesVec)
-//    {
-//        pair<string,string> StockPair = spp.GetStockPair();
-//        cout << "Stock1=" << StockPair.first << ", Stock2=" << StockPair.second << endl;
-//
-//        map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
-//        for (const std::pair<const std::string,PairPrice> &dp : dailyPairPrices)
-//        {
-//            cout << "  Date=" << dp.first << ", P&L=" << dp.second.dProfitLoss << endl;
-//        }
-//    }
-//
-//    cout << "Here is the menu" << endl;
-//
-//    return 0;
-//}
