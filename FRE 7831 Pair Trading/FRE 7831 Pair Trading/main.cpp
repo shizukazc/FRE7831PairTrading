@@ -121,170 +121,251 @@ error_exit:
     return -1;
 }
 
-void PrintMenu()
+map<char,pair<string,string>> CreateMenu()
+{
+    map<char,pair<string,string>> menu;
+    
+    menu.insert({ 'A', pair<string,string>(
+        "Create Tables",
+        "Create table StockPairs, PairOnePrices, PairTwoPrices, and PairPrices, in order.")
+    });
+    menu.insert({ 'B', pair<string,string>(
+        "Populate StockPairs",
+        "Read stock pairs from local file and populate them in table StockPairs.")
+    });
+    menu.insert({ 'C', pair<string,string>(
+        "Retrieve & Populate for Each Stock",
+        "Retrieve the historical data of each stock in table StockPairs and populate the data into table PairOnePrices, PairTwoPrices, PairPrices, in order.")
+    });
+    menu.insert({ 'D', pair<string,string>(
+        "Update Volatility",
+        "Based on the historical data in table PairPrices, calculate the volatility of each stock pair's close price ratio")
+    });
+    menu.insert({ 'E', pair<string,string>(
+        "Backtest",
+        "Perform pair trading for period from 2021-01-01 to today. P&L for each pair on each date is calculated. Results printed to console.")
+    });
+    menu.insert({ 'F', pair<string,string>(
+        "Write Backtest Results",
+        "Save the backtest result to database.")
+    });
+    menu.insert({ 'G', pair<string,string>(
+        "Probation Test",
+        "Manual testing. User gets input start date and end date of the period on which to perform pairtrading. Results printed to console.")
+    });
+    menu.insert({ 'H', pair<string,string>(
+        "Drop All Tables",
+        "Drop table PairPrices, PairOnePrices, PairTwoPrices, and StockPairs, in order.")
+    });
+    menu.insert({ 'M', pair<string,string>(
+        "Describe Option",
+        "Display the detailed explanation about a given option.")
+    });
+    menu.insert({ 'X', pair<string,string>(
+        "Exit",
+        "Terminate the program and exit.")
+    });
+    
+    return menu;
+}
+
+void PrintMenu(const map<char,pair<string,string>> &menu)
 {
     cout << "Menu" << endl;
-    cout << "========" << endl;
-    cout << "A - Create and Populate Pair Table" << endl;
-    cout << "B - Retrieve and Populate Historical Data for Each Stock" << endl;
-    cout << "C - Create PairPrices Table" << endl;
-    cout << "D - Calculate Volatility" << endl;
-    cout << "E - Back Test" << endl;
-    cout << "F - Calculate Profit and Loss for Each Pair" << endl;
-    cout << "G - Manual Testing" << endl;
-    cout << "H - Drop All the Tables" << endl;
-    cout << "X - Exit" << endl << endl;
+    cout << "========================================" << endl;
+    for (const pair<const char,pair<string,string>> &p : menu)
+    {
+        cout << p.first << " - " << p.second.first << endl;
+    }
+    cout << endl;
     cout << "Enter selection: ";
 }
 
-//int main()
-//{
-//    char selection = NULL;
-//    std::string user_input;
-//
-//    do
-//    {
-//        PrintMenu();
-//        cin >> user_input;
-//
-//        if (user_input.length() != 1)
-//        {
-//            cerr << "Invalid selection. Choose again." << endl;
-//            continue;
-//        }
-//
-//        // Convert the selection to upper case
-//        transform(user_input.begin(), user_input.end(), user_input.begin(), ::toupper);
-//        selection = user_input[0];
-//
-//        switch (selection) {
-//            case 'A':
-//            {
-//                break;
-//            }
-//
-//            case 'B':
-//            {
-//                break;
-//            }
-//
-//            case 'C':
-//            {
-//                break;
-//            }
-//
-//            case 'D':
-//            {
-//                break;
-//            }
-//
-//            case 'E':
-//            {
-//                break;
-//            }
-//
-//            case 'F':
-//            {
-//                break;
-//            }
-//
-//            case 'G':
-//            {
-//                break;
-//            }
-//
-//            case 'H':
-//            {
-//                break;
-//            }
-//
-//            default:
-//                break;
-//        }
-//
-//    } while (selection != 'X');
-//
-//    return 0;
-//}
-
-int main(int argc, char *args[]) {
-
-    vector<pair<string,string>> PairVec;
-
-    if (ReadPairsFromFile(pairfile, PairVec) != 0)
-    {
-        cerr << "ERROR: Failed to read from " << pairfile << endl;
-        return -1;
-    }
-
-    // TODO: This is just for getting bak file. Modify it once done.
-    bool init_env = true;
-    // bool init_env = (argc > 1 && std::string(args[1]) == "--init");
-
-    if (init_env)
-    {
-        // Initialize the environment for the program to run
-        if (initialize(PairVec) != 0)
-        {
-            cerr << "ERROR: initialize() failed" << endl;
-            return -1;
-        }
-    }
+int GetSelection(char &selection)
+{
+    std::string user_input;
     
-    // TODO: This is just for getting bak file. Remove it once done.
+    cin >> user_input;
+    if (user_input.length() != 1) { return -1; }
+    
+    // Convert the selection to upper case
+    transform(user_input.begin(), user_input.end(), user_input.begin(), ::toupper);
+    
+    selection = user_input[0];
+    
     return 0;
+}
 
-    sqlite3 *db;
+int main()
+{
+    map<char,pair<string,string>> menu = CreateMenu();
+    
+    char selection = NULL;
 
-    // Open database
-    if (OpenDatabase(db) != 0) { return -1; }
-
-    time_t t = std::time(0);
-    tm *now = std::localtime(&t);
-    string today = to_string(now->tm_year + 1900) + "-" + to_string(now->tm_mon + 1) + "-" + to_string(now->tm_mday);
-
-    string backtest_start_date = "2020-12-31";
-    string backtest_end_date = today;
-
-    std::vector<StockPairPrices> StockPairPricesVec;
-
-    if (PopulateStockPairPrices(PairVec, backtest_start_date, backtest_end_date, StockPairPricesVec) != 0)
+    do
     {
-        cerr << "ERROR: PopulateStockPairPrices() failed" << endl;
-        return -1;
-    }
-
-    // Prepare for the calculation
-    for (StockPairPrices &spp : StockPairPricesVec)
-    {
-        double volatility = 0.;
-        if (SelectStockPairsVolatility(db, spp.GetStockPair(), volatility) != 0)
+        PrintMenu(menu);
+        if (GetSelection(selection) != 0)
         {
-            cerr << "ERROR: SelectStockPairsVolatility() failed" << endl;
-            CloseDatabase(db);
-            return -1;
+            cerr << "Invalid selection. Choose again." << endl;
+            continue;
         }
+        
+        switch (selection) {
+            case 'A':
+            {
+                break;
+            }
 
-        spp.SetVolatility(volatility);
-        spp.SetK(1.);
-    }
+            case 'B':
+            {
+                break;
+            }
 
-    // Perform calculation
-    PairTradePerform(StockPairPricesVec);
+            case 'C':
+            {
+                break;
+            }
 
-    for (StockPairPrices &spp : StockPairPricesVec)
-    {
-        pair<string,string> StockPair = spp.GetStockPair();
-        cout << "Stock1=" << StockPair.first << ", Stock2=" << StockPair.second << endl;
+            case 'D':
+            {
+                break;
+            }
 
-        map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
-        for (const std::pair<const std::string,PairPrice> &dp : dailyPairPrices)
-        {
-            cout << "  Date=" << dp.first << ", P&L=" << dp.second.dProfitLoss << endl;
+            case 'E':
+            {
+                break;
+            }
+
+            case 'F':
+            {
+                break;
+            }
+
+            case 'G':
+            {
+                break;
+            }
+
+            case 'H':
+            {
+                break;
+            }
+                
+            // Special purpose
+            case 'M':
+            {
+                cout << "Selection: ";
+                if (GetSelection(selection) != 0 || menu.find(selection) == menu.end())
+                {
+                    cerr << "Invalid selection. Going back to menu." << endl;
+                }
+                else
+                {
+                    cout << endl;
+                    cout << "INFO: " << menu[selection].first << endl;
+                    cout << menu[selection].second << endl;
+                }
+                break;
+            }
+                
+            case 'X':
+            {
+                break;
+            }
+
+            default:
+            {
+                cerr << "Invalid selection. Choose again." << endl;
+                break;
+            }
         }
-    }
+        
+        cout << endl;
 
-    cout << "Here is the menu" << endl;
+    } while (selection != 'X');
 
     return 0;
 }
+
+//int main() {
+//
+//    vector<pair<string,string>> PairVec;
+//
+//    if (ReadPairsFromFile(pairfile, PairVec) != 0)
+//    {
+//        cerr << "ERROR: Failed to read from " << pairfile << endl;
+//        return -1;
+//    }
+//
+//    // TODO: This is just for getting bak file. Modify it once done.
+//    bool init_env = true;
+//    // bool init_env = (argc > 1 && std::string(args[1]) == "--init");
+//
+//    if (init_env)
+//    {
+//        // Initialize the environment for the program to run
+//        if (initialize(PairVec) != 0)
+//        {
+//            cerr << "ERROR: initialize() failed" << endl;
+//            return -1;
+//        }
+//    }
+//
+//    // TODO: This is just for getting bak file. Remove it once done.
+//    return 0;
+//
+//    sqlite3 *db;
+//
+//    // Open database
+//    if (OpenDatabase(db) != 0) { return -1; }
+//
+//    time_t t = std::time(0);
+//    tm *now = std::localtime(&t);
+//    string today = to_string(now->tm_year + 1900) + "-" + to_string(now->tm_mon + 1) + "-" + to_string(now->tm_mday);
+//
+//    string backtest_start_date = "2020-12-31";
+//    string backtest_end_date = today;
+//
+//    std::vector<StockPairPrices> StockPairPricesVec;
+//
+//    if (PopulateStockPairPrices(PairVec, backtest_start_date, backtest_end_date, StockPairPricesVec) != 0)
+//    {
+//        cerr << "ERROR: PopulateStockPairPrices() failed" << endl;
+//        return -1;
+//    }
+//
+//    // Prepare for the calculation
+//    for (StockPairPrices &spp : StockPairPricesVec)
+//    {
+//        double volatility = 0.;
+//        if (SelectStockPairsVolatility(db, spp.GetStockPair(), volatility) != 0)
+//        {
+//            cerr << "ERROR: SelectStockPairsVolatility() failed" << endl;
+//            CloseDatabase(db);
+//            return -1;
+//        }
+//
+//        spp.SetVolatility(volatility);
+//        spp.SetK(1.);
+//    }
+//
+//    // Perform calculation
+//    PairTradePerform(StockPairPricesVec);
+//
+//    for (StockPairPrices &spp : StockPairPricesVec)
+//    {
+//        pair<string,string> StockPair = spp.GetStockPair();
+//        cout << "Stock1=" << StockPair.first << ", Stock2=" << StockPair.second << endl;
+//
+//        map<std::string,PairPrice> &dailyPairPrices = spp.GetDailyPrices();
+//        for (const std::pair<const std::string,PairPrice> &dp : dailyPairPrices)
+//        {
+//            cout << "  Date=" << dp.first << ", P&L=" << dp.second.dProfitLoss << endl;
+//        }
+//    }
+//
+//    cout << "Here is the menu" << endl;
+//
+//    return 0;
+//}
