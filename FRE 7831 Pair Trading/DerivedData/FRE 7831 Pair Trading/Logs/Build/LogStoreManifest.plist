@@ -6,6 +6,142 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
+		<key>0832915A-26D5-483A-882E-AB41473386AB</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>0832915A-26D5-483A-882E-AB41473386AB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641879506.94910502</real>
+			<key>timeStoppedRecording</key>
+			<real>641879508.13150501</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>0832915A-26D5-483A-882E-AB41473386AB</string>
+		</dict>
+		<key>11CCE10F-BC68-410E-A341-A667B92CDE22</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>11CCE10F-BC68-410E-A341-A667B92CDE22.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641879016.01885796</real>
+			<key>timeStoppedRecording</key>
+			<real>641879018.22826505</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>11CCE10F-BC68-410E-A341-A667B92CDE22</string>
+		</dict>
+		<key>15FBC8BB-0346-4261-BA15-8944452FBAA8</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>15FBC8BB-0346-4261-BA15-8944452FBAA8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641883172.33977699</real>
+			<key>timeStoppedRecording</key>
+			<real>641883173.20470595</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>15FBC8BB-0346-4261-BA15-8944452FBAA8</string>
+		</dict>
+		<key>191D178A-0172-4670-AD60-C5122ACDF1D3</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>191D178A-0172-4670-AD60-C5122ACDF1D3.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641886106.16311204</real>
+			<key>timeStoppedRecording</key>
+			<real>641886108.301368</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>191D178A-0172-4670-AD60-C5122ACDF1D3</string>
+		</dict>
 		<key>1D50488C-14D9-485E-96C9-215C484CA9CB</key>
 		<dict>
 			<key>className</key>
@@ -39,6 +175,40 @@
 			<string>Build FRE 7831 Pair Trading</string>
 			<key>uniqueIdentifier</key>
 			<string>1D50488C-14D9-485E-96C9-215C484CA9CB</string>
+		</dict>
+		<key>22F95952-0EAC-4371-BEAF-38009E44692C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>22F95952-0EAC-4371-BEAF-38009E44692C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641885658.77809501</real>
+			<key>timeStoppedRecording</key>
+			<real>641885660.32246804</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>22F95952-0EAC-4371-BEAF-38009E44692C</string>
 		</dict>
 		<key>269CEAEB-22F6-4B74-A44F-97B2705559FF</key>
 		<dict>
@@ -210,6 +380,74 @@
 			<key>uniqueIdentifier</key>
 			<string>36CB36B8-E01D-4623-B4E5-D07C36D175D5</string>
 		</dict>
+		<key>3EEA2AF7-A96E-4C80-A425-894C5FFF7BC7</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>3EEA2AF7-A96E-4C80-A425-894C5FFF7BC7.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641886233.40183306</real>
+			<key>timeStoppedRecording</key>
+			<real>641886234.63458502</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>3EEA2AF7-A96E-4C80-A425-894C5FFF7BC7</string>
+		</dict>
+		<key>40BF1AE7-D8F6-4699-A0C8-F082C251E6D4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>40BF1AE7-D8F6-4699-A0C8-F082C251E6D4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641885786.48476398</real>
+			<key>timeStoppedRecording</key>
+			<real>641885787.58659804</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>40BF1AE7-D8F6-4699-A0C8-F082C251E6D4</string>
+		</dict>
 		<key>41BC2AD4-E61B-48B9-91BD-9CFA0A1D60EC</key>
 		<dict>
 			<key>className</key>
@@ -243,6 +481,74 @@
 			<string>Build FRE 7831 Pair Trading</string>
 			<key>uniqueIdentifier</key>
 			<string>41BC2AD4-E61B-48B9-91BD-9CFA0A1D60EC</string>
+		</dict>
+		<key>44870DE3-A155-4DF4-81BB-2934B21A1089</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>44870DE3-A155-4DF4-81BB-2934B21A1089.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641879277.82156098</real>
+			<key>timeStoppedRecording</key>
+			<real>641879279.02614498</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>44870DE3-A155-4DF4-81BB-2934B21A1089</string>
+		</dict>
+		<key>495231F5-0D7C-427E-9936-1404863CAE25</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>495231F5-0D7C-427E-9936-1404863CAE25.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641883330.20897496</real>
+			<key>timeStoppedRecording</key>
+			<real>641883332.72083604</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>495231F5-0D7C-427E-9936-1404863CAE25</string>
 		</dict>
 		<key>4C89D052-4077-4944-9F19-E1D3C9C031D0</key>
 		<dict>
@@ -278,6 +584,244 @@
 			<key>uniqueIdentifier</key>
 			<string>4C89D052-4077-4944-9F19-E1D3C9C031D0</string>
 		</dict>
+		<key>563E9413-3800-4FD0-8E00-80B3BF1DF95C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>563E9413-3800-4FD0-8E00-80B3BF1DF95C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641882904.131971</real>
+			<key>timeStoppedRecording</key>
+			<real>641882906.70756197</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>563E9413-3800-4FD0-8E00-80B3BF1DF95C</string>
+		</dict>
+		<key>5E2B9D4A-D930-41B7-B4D3-D4C5268C65F0</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5E2B9D4A-D930-41B7-B4D3-D4C5268C65F0.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641880675.36796904</real>
+			<key>timeStoppedRecording</key>
+			<real>641880676.52676904</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>5E2B9D4A-D930-41B7-B4D3-D4C5268C65F0</string>
+		</dict>
+		<key>5E558C0C-B3E4-4C56-9F01-86E1E0B1B84C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5E558C0C-B3E4-4C56-9F01-86E1E0B1B84C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641872476.22059</real>
+			<key>timeStoppedRecording</key>
+			<real>641872477.02356601</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>5E558C0C-B3E4-4C56-9F01-86E1E0B1B84C</string>
+		</dict>
+		<key>5F7EC63B-3E85-474E-8E68-D85A113D91FB</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>5F7EC63B-3E85-474E-8E68-D85A113D91FB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641891605.28246796</real>
+			<key>timeStoppedRecording</key>
+			<real>641891607.86237299</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>5F7EC63B-3E85-474E-8E68-D85A113D91FB</string>
+		</dict>
+		<key>61DCE1AE-32FC-44D8-9EC8-705C124BF53F</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>61DCE1AE-32FC-44D8-9EC8-705C124BF53F.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641879476.11803102</real>
+			<key>timeStoppedRecording</key>
+			<real>641879477.340186</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>61DCE1AE-32FC-44D8-9EC8-705C124BF53F</string>
+		</dict>
+		<key>6914BBFE-4A49-4580-9042-7D02E8777DD4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>6914BBFE-4A49-4580-9042-7D02E8777DD4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641883161.99025702</real>
+			<key>timeStoppedRecording</key>
+			<real>641883164.12801301</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>6914BBFE-4A49-4580-9042-7D02E8777DD4</string>
+		</dict>
+		<key>7D153C09-89B9-49F5-92EA-B8F94697C3C0</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7D153C09-89B9-49F5-92EA-B8F94697C3C0.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641891498.58111298</real>
+			<key>timeStoppedRecording</key>
+			<real>641891500.87294698</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>7D153C09-89B9-49F5-92EA-B8F94697C3C0</string>
+		</dict>
 		<key>81762F7F-7259-4F23-A382-3312A12B8951</key>
 		<dict>
 			<key>className</key>
@@ -311,6 +855,40 @@
 			<string>Build FRE 7831 Pair Trading</string>
 			<key>uniqueIdentifier</key>
 			<string>81762F7F-7259-4F23-A382-3312A12B8951</string>
+		</dict>
+		<key>82430E26-CBDA-4D7C-AD47-50155CFDAA67</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>82430E26-CBDA-4D7C-AD47-50155CFDAA67.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641885459.91391003</real>
+			<key>timeStoppedRecording</key>
+			<real>641885462.23633504</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>82430E26-CBDA-4D7C-AD47-50155CFDAA67</string>
 		</dict>
 		<key>86E33B42-A224-492F-B1C9-717605E6E168</key>
 		<dict>
@@ -346,6 +924,74 @@
 			<key>uniqueIdentifier</key>
 			<string>86E33B42-A224-492F-B1C9-717605E6E168</string>
 		</dict>
+		<key>87249562-043C-4F45-ACB8-E3BE6E59BB2C</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>87249562-043C-4F45-ACB8-E3BE6E59BB2C.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641879437.97093403</real>
+			<key>timeStoppedRecording</key>
+			<real>641879439.12027597</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>87249562-043C-4F45-ACB8-E3BE6E59BB2C</string>
+		</dict>
+		<key>8D4265F8-D27B-4B76-8FA9-BAD62707C26D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>8D4265F8-D27B-4B76-8FA9-BAD62707C26D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641879533.20544696</real>
+			<key>timeStoppedRecording</key>
+			<real>641879534.43919694</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>8D4265F8-D27B-4B76-8FA9-BAD62707C26D</string>
+		</dict>
 		<key>94AA00AA-BE0A-4051-9A8A-C2D8DFEF909F</key>
 		<dict>
 			<key>className</key>
@@ -380,6 +1026,74 @@
 			<key>uniqueIdentifier</key>
 			<string>94AA00AA-BE0A-4051-9A8A-C2D8DFEF909F</string>
 		</dict>
+		<key>98836710-C64B-491B-86F0-00A49199951D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>98836710-C64B-491B-86F0-00A49199951D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641872490.62514603</real>
+			<key>timeStoppedRecording</key>
+			<real>641872492.55795503</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>98836710-C64B-491B-86F0-00A49199951D</string>
+		</dict>
+		<key>9BDD5C58-03C8-448C-BA68-251A9C69EF75</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>9BDD5C58-03C8-448C-BA68-251A9C69EF75.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641891737.89559305</real>
+			<key>timeStoppedRecording</key>
+			<real>641891740.25481498</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>9BDD5C58-03C8-448C-BA68-251A9C69EF75</string>
+		</dict>
 		<key>9CCFB383-2088-4E37-ADE8-D9CDC559FCF4</key>
 		<dict>
 			<key>className</key>
@@ -413,6 +1127,312 @@
 			<string>Build FRE 7831 Pair Trading</string>
 			<key>uniqueIdentifier</key>
 			<string>9CCFB383-2088-4E37-ADE8-D9CDC559FCF4</string>
+		</dict>
+		<key>A3733AB1-E3D3-465A-A76E-2C2A2CDDC249</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A3733AB1-E3D3-465A-A76E-2C2A2CDDC249.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641886219.51386905</real>
+			<key>timeStoppedRecording</key>
+			<real>641886220.39420295</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>A3733AB1-E3D3-465A-A76E-2C2A2CDDC249</string>
+		</dict>
+		<key>A5F46705-708D-4E86-A5C8-D56E6A67CFE1</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A5F46705-708D-4E86-A5C8-D56E6A67CFE1.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641883060.16214204</real>
+			<key>timeStoppedRecording</key>
+			<real>641883062.31077302</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>A5F46705-708D-4E86-A5C8-D56E6A67CFE1</string>
+		</dict>
+		<key>AC74AED7-BB4B-421E-9AB5-704087A3A2D4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>AC74AED7-BB4B-421E-9AB5-704087A3A2D4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641883320.47525799</real>
+			<key>timeStoppedRecording</key>
+			<real>641883321.44832599</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>AC74AED7-BB4B-421E-9AB5-704087A3A2D4</string>
+		</dict>
+		<key>D30ADFB1-3021-4C7B-8B57-2D2DA54C5D28</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D30ADFB1-3021-4C7B-8B57-2D2DA54C5D28.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641885876.14319396</real>
+			<key>timeStoppedRecording</key>
+			<real>641885877.32519996</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>D30ADFB1-3021-4C7B-8B57-2D2DA54C5D28</string>
+		</dict>
+		<key>D77816FC-8FBF-43AA-89EC-6FAA558447F4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D77816FC-8FBF-43AA-89EC-6FAA558447F4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641880607.42398798</real>
+			<key>timeStoppedRecording</key>
+			<real>641880609.64151001</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>D77816FC-8FBF-43AA-89EC-6FAA558447F4</string>
+		</dict>
+		<key>E7E83E06-5BC2-4F8A-A4C6-B915F6BE4CAD</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>E7E83E06-5BC2-4F8A-A4C6-B915F6BE4CAD.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641883189.53890705</real>
+			<key>timeStoppedRecording</key>
+			<real>641883190.67721403</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>E7E83E06-5BC2-4F8A-A4C6-B915F6BE4CAD</string>
+		</dict>
+		<key>EDE01075-6C49-4A78-AB51-418EA6FBA481</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>EDE01075-6C49-4A78-AB51-418EA6FBA481.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641871809.83782601</real>
+			<key>timeStoppedRecording</key>
+			<real>641871811.10620403</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>EDE01075-6C49-4A78-AB51-418EA6FBA481</string>
+		</dict>
+		<key>FB3321A7-89FD-4175-8CB6-983373A1059E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FB3321A7-89FD-4175-8CB6-983373A1059E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641875065.43823302</real>
+			<key>timeStoppedRecording</key>
+			<real>641875068.08921504</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>FB3321A7-89FD-4175-8CB6-983373A1059E</string>
+		</dict>
+		<key>FE667CFB-38C9-40E2-BBF7-F1AB2967CD04</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FE667CFB-38C9-40E2-BBF7-F1AB2967CD04.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>FRE 7831 Pair Trading project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>FRE 7831 Pair Trading</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>timeStartedRecording</key>
+			<real>641891873.19350398</real>
+			<key>timeStoppedRecording</key>
+			<real>641891875.551314</real>
+			<key>title</key>
+			<string>Build FRE 7831 Pair Trading</string>
+			<key>uniqueIdentifier</key>
+			<string>FE667CFB-38C9-40E2-BBF7-F1AB2967CD04</string>
 		</dict>
 	</dict>
 </dict>

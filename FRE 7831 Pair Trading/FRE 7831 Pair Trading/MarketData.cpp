@@ -15,7 +15,7 @@
 #include <cmath>
 #include "json/json.h"
 
-std::string API_TOKEN = "605f41c6a29c69.96773141";
+static const std::string API_TOKEN = "605f41c6a29c69.96773141";
 
 // Writing call back function for storing fetched values in memory
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
@@ -84,21 +84,22 @@ int PullMarketData(const std::string &url_request, std::string &read_buffer)
     return 0;
 }
 
-int PopulateStocks(const std::string &read_buffer, std::string symbol, std::map<std::string,Stock> &StockMap)
-{
-    std::vector<TradeData> TradeDataVec;
-    
-    if (ParseJson(read_buffer, TradeDataVec) != 0)
-    {
-        std::cerr << "PopulateStocks() failed" << std::endl;
-        return -1;
-    }
-    
-    Stock stock(symbol, TradeDataVec);
-    StockMap.insert({ symbol, stock });
-    
-    return 0;
-}
+//int PopulateStocks(const std::string &read_buffer, std::string symbol, std::map<std::string,Stock> &StockMap)
+//{
+//    std::vector<TradeData> TradeDataVec;
+//    std::vector<TradeData> BacktestVec;
+//
+//    if (ParseJson(read_buffer, bt_sdate, TradeDataVec, BacktestVec) != 0)
+//    {
+//        std::cerr << "PopulateStocks() failed" << std::endl;
+//        return -1;
+//    }
+//
+//    Stock stock(symbol, BacktestVec);
+//    StockMap.insert({ symbol, stock });
+//
+//    return 0;
+//}
 
 std::string BuildDailyRequestURL(std::string symbol, std::string start_date, std::string end_date)
 {
@@ -124,7 +125,7 @@ int ParseJson(const std::string &read_buffer, std::vector<TradeData> &TradeDataV
         return -1;
     }
     
-    std::cout << "\nSuccess parsing JSON\n" << root << std::endl;
+    std::cout << "\nSuccess parsing JSON\n" << std::endl;
     
     std::string date;
     double open;
@@ -151,73 +152,73 @@ int ParseJson(const std::string &read_buffer, std::vector<TradeData> &TradeDataV
     return 0;
 }
 
-int PopulateStockPairPrices(const std::vector<std::pair<std::string,std::string>> &PairVec,
-                            std::string start_date, std::string end_date, std::vector<StockPairPrices> &StockPairPricesVec)
-{
-    for (const std::pair<std::string,std::string> &p : PairVec)
-    {
-        StockPairPrices spp(p);
-        
-        const std::string &symbol1 = p.first;
-        const std::string &symbol2 = p.second;
-        
-        std::string read_buffer1;
-        std::string read_buffer2;
-        
-        std::string url_request1 = BuildDailyRequestURL(symbol1, start_date, end_date);
-        std::string url_request2 = BuildDailyRequestURL(symbol2, start_date, end_date);
-        
-        if (PullMarketData(url_request1, read_buffer1) != 0)
-        {
-            std::cerr << "Backtest: Failed to pull market data for " << symbol1 << std::endl;
-            return -1;
-        }
-        
-        if (PullMarketData(url_request2, read_buffer2) != 0)
-        {
-            std::cerr << "Backtest: Failed to pull market data for " << symbol2 << std::endl;
-            return -1;
-        }
-        
-        std::vector<TradeData> TradeDataVec1;
-        std::vector<TradeData> TradeDataVec2;
-        
-        if (ParseJson(read_buffer1, TradeDataVec1) != 0)
-        {
-            std::cerr << "Backtest: Failed to parse json for " << symbol1 << std::endl;
-            return -1;
-        }
-        
-        if (ParseJson(read_buffer2, TradeDataVec2) != 0)
-        {
-            std::cerr << "Backtest: Failed to parse json for " << symbol2 << std::endl;
-            return -1;
-        }
-        
-        double open1 = 0.;
-        double open2 = 0.;
-        double close1 = 0.;
-        double close2 = 0.;
-        
-        for (int i = 0; i < TradeDataVec1.size(); i++)
-        {
-            TradeData &td1 = TradeDataVec1[i];
-            TradeData &td2 = TradeDataVec2[i];
-            
-            open1 = td1.GetOpen();
-            open2 = td2.GetOpen();
-            close1 = td1.GetClose();
-            close2 = td2.GetClose();
-            
-            PairPrice pp(open1, close1, open2, close2);
-            spp.SetDailyPairPrice(td1.GetDate(), pp);
-        }
-        
-        StockPairPricesVec.push_back(spp);
-    }
-    
-    return 0;
-}
+//int PopulateStockPairPrices(const std::vector<std::pair<std::string,std::string>> &PairVec,
+//                            std::string start_date, std::string end_date, std::vector<StockPairPrices> &StockPairPricesVec)
+//{
+//    for (const std::pair<std::string,std::string> &p : PairVec)
+//    {
+//        StockPairPrices spp(p);
+//
+//        const std::string &symbol1 = p.first;
+//        const std::string &symbol2 = p.second;
+//
+//        std::string read_buffer1;
+//        std::string read_buffer2;
+//
+//        std::string url_request1 = BuildDailyRequestURL(symbol1, start_date, end_date);
+//        std::string url_request2 = BuildDailyRequestURL(symbol2, start_date, end_date);
+//
+//        if (PullMarketData(url_request1, read_buffer1) != 0)
+//        {
+//            std::cerr << "Backtest: Failed to pull market data for " << symbol1 << std::endl;
+//            return -1;
+//        }
+//
+//        if (PullMarketData(url_request2, read_buffer2) != 0)
+//        {
+//            std::cerr << "Backtest: Failed to pull market data for " << symbol2 << std::endl;
+//            return -1;
+//        }
+//
+//        std::vector<TradeData> TradeDataVec1;
+//        std::vector<TradeData> TradeDataVec2;
+//
+//        if (ParseJson(read_buffer1, TradeDataVec1) != 0)
+//        {
+//            std::cerr << "Backtest: Failed to parse json for " << symbol1 << std::endl;
+//            return -1;
+//        }
+//
+//        if (ParseJson(read_buffer2, TradeDataVec2) != 0)
+//        {
+//            std::cerr << "Backtest: Failed to parse json for " << symbol2 << std::endl;
+//            return -1;
+//        }
+//
+//        double open1 = 0.;
+//        double open2 = 0.;
+//        double close1 = 0.;
+//        double close2 = 0.;
+//
+//        for (int i = 0; i < TradeDataVec1.size(); i++)
+//        {
+//            TradeData &td1 = TradeDataVec1[i];
+//            TradeData &td2 = TradeDataVec2[i];
+//
+//            open1 = td1.GetOpen();
+//            open2 = td2.GetOpen();
+//            close1 = td1.GetClose();
+//            close2 = td2.GetClose();
+//
+//            PairPrice pp(open1, close1, open2, close2);
+//            spp.SetDailyPairPrice(td1.GetDate(), pp);
+//        }
+//
+//        StockPairPricesVec.push_back(spp);
+//    }
+//
+//    return 0;
+//}
 
 void PairTradePerform(std::vector<StockPairPrices> &StockPairPricesVec)
 {

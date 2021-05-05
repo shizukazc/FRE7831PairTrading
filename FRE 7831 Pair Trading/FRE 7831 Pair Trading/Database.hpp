@@ -15,13 +15,13 @@
 #include <utility>
 #include "PairTrading.hpp"
 
-#define PairTradingDBPath "./PairTrading.db"
-
-int CreateDatabase();
-int OpenDatabase(sqlite3 * &db);
+int CreateDatabase(const char *dbfile);
+int OpenDatabase(const char *dbfile, sqlite3 * &db);
 int CreateTables(sqlite3 * &db);
 void CloseDatabase(sqlite3 * &db);
-int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap, const std::vector<std::pair<std::string,std::string>> &PairVec);
+// int InsertIndividualPrices(sqlite3 * &db, std::map<std::string,Stock> &StockMap, const std::vector<std::pair<std::string,std::string>> &PairVec);
+
+int InsertPairKPrices(sqlite3 * &db, bool IsPairOne, const Stock &stock);
 
 /* Special Purpose */
 int InsertStockPairs(sqlite3 * &db, const std::vector<std::pair<std::string,std::string>> &PairVec);
@@ -29,5 +29,7 @@ int InsertPairPrices(sqlite3 * &db);
 int UpdateStockPairsVolatility(sqlite3 * &db, std::string bt_date);
 
 int SelectStockPairsVolatility(sqlite3 * &db, const std::pair<std::string,std::string> &StockPair, double &volatility);
+
+int GetPairPriceMap(sqlite3 * &db, std::string sdate, std::string edate, StockPairPrices &spp);
 
 #endif /* Database_hpp */

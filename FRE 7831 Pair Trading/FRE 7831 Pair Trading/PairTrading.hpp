@@ -160,6 +160,14 @@ struct PairPrice
         this->dClose2 = dClose2_;
         this->dProfitLoss = 0.;
     }
+    
+    friend std::ostream & operator<<(std::ostream &out, const PairPrice &pp)
+    {
+        out << "open1=" << pp.dOpen1 << ", close1=" << pp.dClose1
+            << ", open2=" << pp.dOpen2 << ", close2=" << pp.dClose2
+            << ", P&L=" << pp.dProfitLoss;
+        return out;
+    }
 };
 
 class StockPairPrices
@@ -184,6 +192,7 @@ public:
     
     // Getter
     const std::pair<std::string,std::string> & GetStockPair() const { return stockPair; }
+    const std::map<std::string,PairPrice> & GetDailyPrices() const { return dailyPairPrices; }
     std::map<std::string,PairPrice> & GetDailyPrices() { return dailyPairPrices; }
     double GetVolatility() const { return volatility; }
     double GetK() const { return k; }
@@ -200,6 +209,18 @@ public:
     void UpdateProfitLoss(std::string sDate_, double dProfitLoss_)
     {
         dailyPairPrices[sDate_].dProfitLoss = dProfitLoss_;
+    }
+    
+    friend std::ostream & operator<<(std::ostream &out, const StockPairPrices &spp)
+    {
+        out << "(" << spp.GetStockPair().first << "," << spp.GetStockPair().second
+            << "), vol=" << spp.GetVolatility() << ", K=" << spp.GetK() << std::endl;
+        for (const std::pair<const std::string,PairPrice> &dp : spp.GetDailyPrices())
+        {
+            out << "Date=" << dp.first << ", " << dp.second << std::endl;
+        }
+        
+        return out;
     }
 };
 
