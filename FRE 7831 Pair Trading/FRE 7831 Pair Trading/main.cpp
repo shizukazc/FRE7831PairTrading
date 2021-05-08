@@ -12,6 +12,7 @@
 #include <ctime>
 #include <unistd.h>
 #include <unordered_set>
+#include <iomanip>
 #include "Database.hpp"
 #include "MarketData.hpp"
 #include "PairTrading.hpp"
@@ -29,6 +30,8 @@ const string HIST_EDATE = "2020-12-31";
 // In order for that day to perform pair trading, we move the start date
 //  one trading day forward, which is 2020-12-31.
 const string BT_SDATE = "2020-12-31";
+
+const unsigned int STOCK_SYMBOL_LENGTH_MAX = 9;
 
 map<char,pair<string,string>> CreateMenu()
 {
@@ -60,9 +63,13 @@ map<char,pair<string,string>> CreateMenu()
     });
     menu.insert({ 'G', pair<string,string>(
         "Probation Test",
-        "Manual testing. User gets input start date and end date of the period on which to perform pairtrading. Results printed to console.")
+        "User gets input start date and end date of the period on which to perform pairtrading. Results printed to console.")
     });
     menu.insert({ 'H', pair<string,string>(
+        "Manual Test",
+        "User gets to input a pair of stocks for which pairtrading is performed on 5/7/2021."
+    ) });
+    menu.insert({ 'I', pair<string,string>(
         "Drop All Tables",
         "Drop table PairPrices, PairOnePrices, PairTwoPrices, and StockPairs, in order.")
     });
@@ -133,6 +140,17 @@ int GetK(double &K)
     return K > 0 ? 0 : -1;
 }
 
+int GetSymbol(string &symbol)
+{
+    string user_input;
+    cin >> user_input;
+    
+    if (user_input.length() > STOCK_SYMBOL_LENGTH_MAX) return -1;
+    
+    symbol = user_input;
+    return 0;
+}
+
 int main()
 {
     if (access(DB_FILE, F_OK) != -1) { remove(DB_FILE); }
@@ -145,7 +163,8 @@ int main()
     vector<pair<string,string>> PairVec;
     unordered_set<string> PairOneStocks;
     unordered_set<string> PairTwoStocks;
-    vector<StockPairPrices> StockPairPricesVec;
+    vector<StockPairPrices> BTStockPairPricesVec;
+    vector<StockPairPrices> PTStockPairPricesVec;
     
     time_t t = std::time(0);
     tm *now = std::localtime(&t);
@@ -205,7 +224,7 @@ int main()
                 
                 break;
             }
-                
+
             case 'C':
             {
                 for (const pair<string,string> &p : PairVec)
@@ -300,7 +319,7 @@ int main()
 
             case 'E':
             {
-                StockPairPricesVec.clear();
+                BTStockPairPricesVec.clear();
                 
                 for (const std::pair<std::string,std::string> &p : PairVec)
                 {
@@ -324,20 +343,20 @@ int main()
                     spp.SetVolatility(volatility);
                     spp.SetK(1.);
                     
-                    StockPairPricesVec.push_back(spp);
+                    BTStockPairPricesVec.push_back(spp);
                 }
                 
                 // Perform calculation
-                PairTradePerform(StockPairPricesVec);
+                PairTradePerform(BTStockPairPricesVec);
                 
-                for (const StockPairPrices &spp : StockPairPricesVec) { cout << spp << endl; }
+                for (const StockPairPrices &spp : BTStockPairPricesVec) { cout << spp << endl; }
                 
                 break;
             }
 
             case 'F':
             {
-                if (UpdateBacktestPnL(db, StockPairPricesVec) != 0)
+                if (UpdateBacktestPnL(db, BTStockPairPricesVec) != 0)
                 {
                     cerr << "ERROR: UpdateBacktestPnL() failed" << endl;
                     CloseDatabase(db);
@@ -349,7 +368,7 @@ int main()
 
             case 'G':
             {
-                StockPairPricesVec.clear();
+                PTStockPairPricesVec.clear();
                 
                 string probtest_sdate;
                 string probtest_edate;
@@ -429,19 +448,89 @@ int main()
                         spp.SetVolatility(volatility);
                         spp.SetK(K);
                         
-                        StockPairPricesVec.push_back(spp);
+                        PTStockPairPricesVec.push_back(spp);
                     }
                     
                     // Perform calculation
-                    PairTradePerform(StockPairPricesVec);
+                    PairTradePerform(PTStockPairPricesVec);
                     
-                    for (const StockPairPrices &spp : StockPairPricesVec) { cout << spp << endl; }
+                    for (const StockPairPrices &spp : PTStockPairPricesVec) { cout << spp << endl; }
                 }
                 
                 break;
             }
-
+                
             case 'H':
+            {
+                string symbol1;
+                string symbol2;
+                
+                cout << "Enter Stock Symbol #1: ";
+                if (GetSymbol(symbol1))
+                {
+                    cerr << "ERROR: Invalid stock symbol " << symbol1 << ". Going back to menu." << endl;
+                    continue;
+                }
+                
+                cout << "Enter Stock Symbol #2: ";
+                if (GetSymbol(symbol2))
+                {
+                    cerr << "ERROR: Invalid stock symbol " << symbol2 << ". Going back to menu." << endl;
+                    continue;
+                }
+                
+                // See if the pair exists
+                bool pairExists = false;
+                for (const pair<string,string> &p : PairVec)
+                {
+                    if (p.first == symbol1 && p.second == symbol2)
+                    {
+                        pairExists = true;
+                        break;
+                    }
+                }
+                
+                if (!pairExists)
+                {
+                    cerr << "ERROR: Stock pair (" << symbol1 << "," << symbol2 << ") does not exist. Going back to menu." << endl;
+                    continue;
+                }
+                
+                PairPrice pp56;
+                PairPrice pp57;
+                double K = 0.;
+                double volatility = 0.;
+                
+                // Exists
+                for (StockPairPrices &spp : BTStockPairPricesVec)
+                {
+                    const pair<string,string> &sp = spp.GetStockPair();
+                    if (sp.first == symbol1 && sp.second == symbol2)
+                    {
+                        // found
+                        map<string,PairPrice> &dpp = spp.GetDailyPrices();
+                        pp56 = dpp[string("2021-05-06")];
+                        pp57 = dpp[string("2021-05-07")];
+                        K = spp.GetK();
+                        volatility = spp.GetVolatility();
+                        break;
+                    }
+                }
+                
+                pair<int,int> strategy = GetStrategy(pp56.dClose1, pp56.dClose2, pp57.dOpen1, pp57.dOpen2, pp57.dClose1, pp57.dClose2, K, volatility);
+                int N1 = strategy.first;
+                int N2 = strategy.second;
+                
+                cout << "Pair=(" << symbol1 << "," << symbol2 << "), K=" << K << ", Volatility=" << setprecision(20) << volatility << endl;
+                cout << setprecision(2);
+                cout << "Date=2021-05-07, close1d1=" << pp56.dClose1 << ", close2d1=" << pp56.dClose2
+                    << ", open1d2=" << pp57.dOpen1 << ", open2d2=" << pp57.dOpen2 << ", close1d2=" << pp57.dClose1 << ", close2d2=" << pp57.dClose2 << endl;
+                cout << "Strategy=" << (N1 > 0 ? "Long" : "Short") << ", N1=" << N1 << ", N2=" << N2 << ", P&L=" << pp57.dProfitLoss << endl;
+                
+                break;
+            }
+
+            case 'I':
             {
                 if (DropTables(db) != 0)
                 {
@@ -467,10 +556,11 @@ int main()
                     cout << endl;
                     cout << "INFO: " << menu[selection].first << endl;
                     cout << menu[selection].second << endl;
+                    selection = 'M';  // Change it back
                 }
                 break;
             }
-                
+            
             case 'X':
             {
                 break;

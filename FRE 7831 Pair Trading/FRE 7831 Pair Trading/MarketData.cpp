@@ -135,6 +135,17 @@ int ParseJson(const std::string &read_buffer, std::vector<TradeData> &TradeDataV
     return 0;
 }
 
+std::pair<int,int> GetStrategy(double close1d1, double close2d1, double open1d2, double open2d2, double close1d2, double close2d2, double K, double Sigma)
+{
+    double close_ratio = close1d1 / close2d1;
+    double open_ratio = open1d2 / open2d2;
+    
+    int N1 = ((abs(close_ratio - open_ratio) > K * Sigma) ? -1 : 1) * 10000;
+    int N2 = (int) std::round(-N1 * open_ratio);
+    
+    return std::pair<int,int>{ N1, N2 };
+}
+
 void PairTradePerform(std::vector<StockPairPrices> &StockPairPricesVec)
 {
     double close1d1 = 0.;
@@ -172,11 +183,9 @@ void PairTradePerform(std::vector<StockPairPrices> &StockPairPricesVec)
             close1d2 = pp.dClose1;
             close2d2 = pp.dClose2;
             
-            double close_ratio = close1d1 / close2d1;
-            double open_ratio = open1d2 / open2d2;
-            
-            int N1 = ((abs(close_ratio - open_ratio) > spp.GetK() * spp.GetVolatility()) ? -1 : 1) * 10000;
-            int N2 = (int) std::round(-N1 * open_ratio);
+            std::pair<int,int> strategy = GetStrategy(close1d1, close2d1, open1d2, open2d2, close1d2, close2d2, spp.GetK(), spp.GetVolatility());
+            int N1 = strategy.first;
+            int N2 = strategy.second;
             
             double pnl = N1 * (close1d2 - open1d2) + N2 * (close2d2 - open2d2);
             
